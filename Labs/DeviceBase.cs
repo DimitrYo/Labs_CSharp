@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Lab1 {
-    public abstract class DeviceBase : IDevice {
+    public abstract class DeviceBase {
         public string Manufacturer { get; set; }
         public DateTime ManufactureDate { get; set; }
         public virtual string Info() {

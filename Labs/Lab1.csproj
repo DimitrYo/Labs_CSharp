@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeviceBase.cs" />
-    <Compile Include="IDevice.cs" />
     <Compile Include="MobilePhone.cs" />
     <Compile Include="OledScreen.cs" />
     <Compile Include="Program.cs" />
