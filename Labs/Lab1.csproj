@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BluatoothAdapter.cs" />
     <Compile Include="DeviceBase.cs" />
+    <Compile Include="LteAdapter.cs" />
     <Compile Include="MobilePhone.cs" />
+    <Compile Include="NetworkBase.cs" />
     <Compile Include="OledScreen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

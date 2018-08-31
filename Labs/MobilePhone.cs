@@ -17,10 +17,14 @@ namespace Lab1 {
             var screen = new OledScreen();
             var sensor1 = new SensorGyroscope();
             var sensor2 = new SensorLight();
+            var network1 = new BluatoothAdapter();
+            var network2 = new LteAdapter();
 
             Devices.Add(screen);
             Devices.Add(sensor1);
             Devices.Add(sensor2);
+            Devices.Add(network1);
+            Devices.Add(network2);
 
         }
 
