@@ -8,8 +8,7 @@ namespace Lab1 {
     class Program {
         static void Main(string[] args) {
             var myPhone = new MobilePhone();
-            var description = myPhone.GetFullDescription();
-            Console.WriteLine(description);
+            Console.WriteLine(myPhone.GetFullDescription());
             Console.ReadKey();
         }
     }
