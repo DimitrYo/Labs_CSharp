@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab1 {
     public class MobilePhone : DeviceBase {
+        private List<DeviceBase> Devices;
         public string Model { get; set; }
 
         public MobilePhone() {
@@ -22,19 +23,19 @@ namespace Lab1 {
             Devices.Add(sensor2);
 
         }
-        private List<DeviceBase> Devices;
+
         public override string Info() {
             var text = "Phone information:\r\n";
             text += $"\tModel: {Model}\r\n";
             text += base.Info();
-            
+
             return text;
         }
 
         public string GetFullDescription() {
             var text = Info();
 
-            Devices.ForEach(delegate(DeviceBase device) {
+            Devices.ForEach(delegate (DeviceBase device) {
                 text += device.Info();
             });
 
