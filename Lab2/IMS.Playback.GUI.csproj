@@ -46,14 +46,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="General\IDeviceBase.cs" />
+    <Compile Include="General\IOutput.cs" />
+    <Compile Include="General\MobilePhone.cs" />
+    <Compile Include="General\OutputConsole.cs" />
+    <Compile Include="General\OutputControl.cs" />
+    <Compile Include="General\PlaySound.cs" />
+    <Compile Include="PlaySoundForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="PlaySoundForm.Designer.cs">
+      <DependentUpon>PlaySoundForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlaySound\iPhoneHeadset.cs" />
+    <Compile Include="PlaySound\LoudSpeaker.cs" />
+    <Compile Include="PlaySound\PhoneSpeaker.cs" />
+    <Compile Include="PlaySound\SamsungHeadset.cs" />
+    <Compile Include="PlaySound\UnofficialPhoneHeadset.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="PlaySoundForm.resx">
+      <DependentUpon>PlaySoundForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
