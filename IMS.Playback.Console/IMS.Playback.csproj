@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BC82905C-8001-40E1-AC01-E212B2C7FE0A}</ProjectGuid>
+    <ProjectGuid>{C498129B-DD01-4ED0-AC37-11524A10755A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Lab2</RootNamespace>
-    <AssemblyName>Lab2</AssemblyName>
+    <RootNamespace>IMS.Playback.Application</RootNamespace>
+    <AssemblyName>IMS.Playback.Application</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -43,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\iPhoneHeadset - Copy %282%29.cs" />
+    <Compile Include="Classes\UnofficialPhoneHeadset.cs" />
+    <Compile Include="Classes\SamsungHeadset.cs" />
+    <Compile Include="Classes\iPhoneHeadset.cs" />
+    <Compile Include="Classes\IPlaySound.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

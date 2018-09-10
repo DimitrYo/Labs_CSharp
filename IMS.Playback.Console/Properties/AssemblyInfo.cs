@@ -1,15 +1,15 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("IMS.Playback.GUI")]
+[assembly: AssemblyTitle("IMS.Playback.Console")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("IMS.Playback.GUI")]
+[assembly: AssemblyProduct("IMS.Playback.Console")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("673fba0c-e7d6-47e2-8114-6de32906e68a")]
+[assembly: Guid("c498129b-dd01-4ed0-ac37-11524a10755a")]
 
 // Version information for an assembly consists of the following four values:
 //
