@@ -12,7 +12,10 @@ namespace IMS.Playback {
             var descriptionBuilder = new StringBuilder();
             descriptionBuilder.AppendLine($"\tManufacturer: {Manufacturer}");
             descriptionBuilder.AppendLine($"\tManufacture Date: {ManufactureDate}");
+            descriptionBuilder.AppendLine($"\tDevice Type : {this.GetType().Name}");
             return descriptionBuilder.ToString();
         }
+
+       
     }
 }

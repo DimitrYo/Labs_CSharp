@@ -45,6 +45,7 @@
     <Compile Include="General\IDeviceBase.cs" />
     <Compile Include="General\IOutput.cs" />
     <Compile Include="General\MobilePhone.cs" />
+    <Compile Include="General\OutputConsole.cs" />
     <Compile Include="PlaySound\LoudSpeaker.cs" />
     <Compile Include="PlaySound\PhoneSpeaker.cs" />
     <Compile Include="PlaySound\UnofficialPhoneHeadset.cs" />

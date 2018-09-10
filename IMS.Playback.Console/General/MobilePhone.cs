@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace IMS.Playback {
     public class MobilePhone : IDeviceBase {
-        private List<IDeviceBase> Devices;
+        private List<PlaySound> SoundDevices;
         public string Model { get; set; }
 
         public MobilePhone() {
             this.Manufacturer = "Meizu";
             Model = "M2";
 
-            Devices = new List<IDeviceBase>();
+            SoundDevices = new List<PlaySound>();
         }
 
         public override string Info() {
@@ -27,7 +27,10 @@ namespace IMS.Playback {
         public string GetFullDescription() {
             var text = Info();
 
-            Devices.ForEach(delegate (IDeviceBase device) {
+            text += ("\tSound devices\n");
+
+            SoundDevices.ForEach(delegate (PlaySound device) {
+                text += ("\t----\n");
                 text += device.Info();
             });
 
@@ -35,20 +38,29 @@ namespace IMS.Playback {
         }
 
         public void DeviceList() {
-            for (int i = 0; i < Devices.Count; i++) {
-                Console.WriteLine($"{i + 1}: {Devices[i].GetType().ToString()}");
+            Console.WriteLine("Attached devices\n");
+            for (int i = 0; i < SoundDevices.Count; i++) {
+                Console.WriteLine($"{i + 1}: {SoundDevices[i].GetType().Name}");
             }
             Console.WriteLine("\n");
         }
-        public void AttachDevice(ref IDeviceBase deviceToInsert) {
-                Devices.Add(deviceToInsert);
+        public void AttachDevice(ref PlaySound deviceToInsert) {
+            SoundDevices.Add(deviceToInsert);
         }
 
+        public void DettachDevice(int deviceNumber) {
+            SoundDevices.RemoveAt(deviceNumber - 1);
+        }
 
-        public void DettachDevice(IDeviceBase deviceToRemove) {
-            var toDelete = (from device in Devices where device.GetType() == deviceToRemove.GetType() select device);
+        public void DeviceInfo(int deviceNumver) {
+            Console.WriteLine(SoundDevices[deviceNumver - 1].Info());
+        }
 
-          // Devices.Remove();
+        public void Play(int deviceNumver) {
+            Console.WriteLine($"\n{SoundDevices[deviceNumver - 1].GetType().Name} playback selected");
+            Console.WriteLine("Set playback to Mobile");
+            Console.WriteLine("Play sound in Mobile");
+            SoundDevices[deviceNumver - 1].Play(new object());
         }
     }
 }

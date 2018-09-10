@@ -6,8 +6,20 @@ using System.Threading.Tasks;
 
 namespace IMS.Playback {
     public class PhoneSpeaker : PlaySound {
+        private IOutput output;
+
+        public PhoneSpeaker(IOutput output) {
+            Manufacturer = "Meizu";
+            ManufactureDate = DateTime.Today;
+            this.output = output;
+        }
+
+        public override string ToString() {
+            return "Phone standart speaker";
+        }
+
         public override void Play(object data) {
-            Console.WriteLine($"{nameof(PhoneSpeaker)} sound");
+            output.WriteLine($"\n{nameof(PhoneSpeaker)} sound");
         }
     }
 }

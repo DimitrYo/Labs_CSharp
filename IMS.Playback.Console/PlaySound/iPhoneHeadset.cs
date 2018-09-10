@@ -6,8 +6,21 @@ using System.Threading.Tasks;
 
 namespace IMS.Playback {
     public class iPhoneHeadset : PlaySound {
+        private IOutput output;
+
+        public iPhoneHeadset(IOutput output) {
+            Manufacturer = "Apple";
+            ManufactureDate = DateTime.Today;
+            this.output = output;
+        }
+
+        public override string ToString() {
+            return "IPhone Headset";
+        }
+
         public override void Play(object data) {
-            Console.WriteLine($"{nameof(iPhoneHeadset)} sound");
+            output.WriteLine($"{nameof(PhoneSpeaker)} sound\n");
         }
     }
 }
+

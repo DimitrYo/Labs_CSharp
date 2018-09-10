@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace IMS.Playback {
-    public class PlaySound : IDeviceBase {
-        public virtual void Play(object data) { }
+    public abstract class PlaySound : IDeviceBase {
+        private IOutput output;
+        public abstract void Play(object data);
     }
 }
