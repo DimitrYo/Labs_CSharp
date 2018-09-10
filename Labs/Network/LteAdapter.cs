@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1 {
-    public class SensorGyroscope : SensorBase {
-        public SensorGyroscope() {
-            Manufacturer = "TSMC";
+namespace IMS.Phone {
+    class LteAdapter : NetworkBase {
+        public LteAdapter() {
+            Manufacturer = "Huawei";
             ManufactureDate = DateTime.Today;
         }
 
         public override string ToString() {
-            return "Gyroscope Sensor";
+            return "LTE Cat 16 adapter";
         }
     }
 }

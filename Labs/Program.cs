@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1 {
+namespace IMS.Phone {
     class Program {
         static void Main(string[] args) {
             var myPhone = new MobilePhone();

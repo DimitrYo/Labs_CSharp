@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1 {
-    class BluatoothAdapter : NetworkBase {
-        public BluatoothAdapter() {
-            Manufacturer = "Qualcomm";
+namespace IMS.Phone {
+    public class OledScreen : ScreenBase {
+        public OledScreen() {
+            Manufacturer = "Samsung";
             ManufactureDate = DateTime.Today;
         }
 
         public override string ToString() {
-            return "Bluetooth adapter";
+            return "Oled Screen";
         }
     }
+
 }

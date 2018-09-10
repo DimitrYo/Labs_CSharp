@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1 {
-    public class SensorLight : SensorBase {
-        public SensorLight() {
+namespace IMS.Phone {
+    class BluatoothAdapter : NetworkBase {
+        public BluatoothAdapter() {
             Manufacturer = "Qualcomm";
             ManufactureDate = DateTime.Today;
         }
 
         public override string ToString() {
-            return "Brigthness Sensor";
+            return "Bluetooth adapter";
         }
     }
 }

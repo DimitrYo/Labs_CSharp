@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1 {
+namespace IMS.Phone {
     public class MobilePhone : DeviceBase {
         private List<DeviceBase> Devices;
         public string Model { get; set; }

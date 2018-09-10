@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1 {
+namespace IMS.Phone {
     public abstract class ScreenBase : DeviceBase {
         public override string  Info() {
             var descriptionBuilder = new StringBuilder();

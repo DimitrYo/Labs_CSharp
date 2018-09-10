@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C498129B-DD01-4ED0-AC37-11524A10755A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>IMS.Playback.Application</RootNamespace>
-    <AssemblyName>IMS.Playback.Application</AssemblyName>
+    <RootNamespace>IMS.Playback</RootNamespace>
+    <AssemblyName>IMS.Playback</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,11 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\iPhoneHeadset - Copy %282%29.cs" />
-    <Compile Include="Classes\UnofficialPhoneHeadset.cs" />
-    <Compile Include="Classes\SamsungHeadset.cs" />
-    <Compile Include="Classes\iPhoneHeadset.cs" />
-    <Compile Include="Classes\IPlaySound.cs" />
+    <Compile Include="General\IDeviceBase.cs" />
+    <Compile Include="General\IOutput.cs" />
+    <Compile Include="General\MobilePhone.cs" />
+    <Compile Include="PlaySound\LoudSpeaker.cs" />
+    <Compile Include="PlaySound\PhoneSpeaker.cs" />
+    <Compile Include="PlaySound\UnofficialPhoneHeadset.cs" />
+    <Compile Include="PlaySound\SamsungHeadset.cs" />
+    <Compile Include="PlaySound\iPhoneHeadset.cs" />
+    <Compile Include="General\PlaySound.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

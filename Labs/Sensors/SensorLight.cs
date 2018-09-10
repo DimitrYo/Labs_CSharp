@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1 {
-    public class OledScreen : ScreenBase {
-        public OledScreen() {
-            Manufacturer = "Samsung";
+namespace IMS.Phone {
+    public class SensorLight : SensorBase {
+        public SensorLight() {
+            Manufacturer = "Qualcomm";
             ManufactureDate = DateTime.Today;
         }
 
         public override string ToString() {
-            return "Oled Screen";
+            return "Brigthness Sensor";
         }
     }
-
 }

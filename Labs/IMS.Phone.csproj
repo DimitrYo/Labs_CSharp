@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E9FF2A45-30F4-4A65-B985-8BE7940058AD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Labs</RootNamespace>
-    <AssemblyName>Labs</AssemblyName>
+    <RootNamespace>IMS.Phone</RootNamespace>
+    <AssemblyName>IMS.Phone</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,22 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BluatoothAdapter.cs" />
-    <Compile Include="DeviceBase.cs" />
-    <Compile Include="LteAdapter.cs" />
-    <Compile Include="MobilePhone.cs" />
-    <Compile Include="NetworkBase.cs" />
-    <Compile Include="OledScreen.cs" />
+    <Compile Include="Network\BluatoothAdapter.cs" />
+    <Compile Include="General\DeviceBase.cs" />
+    <Compile Include="Network\LteAdapter.cs" />
+    <Compile Include="General\MobilePhone.cs" />
+    <Compile Include="Network\NetworkBase.cs" />
+    <Compile Include="Screen\OledScreen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScreenBase.cs" />
-    <Compile Include="SensorGyroscope.cs" />
-    <Compile Include="SensorLight.cs" />
-    <Compile Include="SensorBase.cs" />
-    <Compile Include="TftScreen.cs" />
+    <Compile Include="Sensors\SensorLight.cs" />
+    <Compile Include="Sensors\ScreenBase.cs" />
+    <Compile Include="Sensors\SensorBase.cs" />
+    <Compile Include="Sensors\SensorGyroscope.cs" />
+    <Compile Include="Screen\TftScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

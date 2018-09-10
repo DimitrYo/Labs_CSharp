@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS.Playback.Application {
-    public class UnofficialPhoneHeadset : IPlaySound {
-        public void Play(object data) {
+namespace IMS.Playback {
+    public class UnofficialPhoneHeadset : PlaySound {
+        public override void Play(object data) {
             Console.WriteLine($"{nameof(UnofficialPhoneHeadset)} sound");
         }
     }
