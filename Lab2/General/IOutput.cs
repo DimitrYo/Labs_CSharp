@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS.Playback {
+namespace IMS.Playback.GUI {
     public interface IOutput {
         void Write(string text);
         void WriteLine(string text);

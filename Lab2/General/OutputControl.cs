@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace IMS.Playback.GUI {
-    class OutputControl : IOutput {
+    public class OutputControl : IOutput {
 
         public string TextOutput { get; set; }
         public void Write(string text) {

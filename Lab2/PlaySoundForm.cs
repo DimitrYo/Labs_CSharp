@@ -33,9 +33,8 @@ namespace IMS.Playback.GUI {
             Attach(selectedItem);
             myPhone.PlayLast();
             MsgTextBox.Text = output.TextOutput;
-            System.Media.SystemSounds.Asterisk.Play();
 
-            //Getted from https://freemusicarchive.org/search/?sort=track_date_published&d=1&page=2&quicksearch=vivaldi
+            // Getted from https://freemusicarchive.org/search/?sort=track_date_published&d=1&page=2&quicksearch=vivaldi
             var player = new SoundPlayer(Properties.Resources.Vivaldi);
             player.Play();
 

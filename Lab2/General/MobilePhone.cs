@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS.Playback {
+namespace IMS.Playback.GUI {
     public class MobilePhone : IDeviceBase {
         private List<PlaySound> SoundDevices;
         private IOutput output;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS.Playback {
+namespace IMS.Playback.GUI {
     public class SamsungHeadset : PlaySound {
         private IOutput output;
 
@@ -19,7 +19,7 @@ namespace IMS.Playback {
         }
 
         public override void Play(object data) {
-            output.WriteLine($"{this.GetType().Name} sound");
+            output.WriteLine($"{nameof(SamsungHeadset)} sound");
         }
     }
 }
