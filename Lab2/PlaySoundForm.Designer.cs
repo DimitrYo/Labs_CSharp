@@ -28,10 +28,10 @@
             this.MsgTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // ApplyButton
             // 
-            this.ApplyButton.Location = new System.Drawing.Point(420, 198);
-            this.ApplyButton.Name = "button1";
+            this.ApplyButton.Location = new System.Drawing.Point(356, 12);
+            this.ApplyButton.Name = "ApplyButton";
             this.ApplyButton.Size = new System.Drawing.Size(196, 60);
             this.ApplyButton.TabIndex = 0;
             this.ApplyButton.Text = "Apply";
@@ -41,16 +41,16 @@
             // PlaybackComponents
             // 
             this.PlaybackComponents.FormattingEnabled = true;
-            this.PlaybackComponents.Location = new System.Drawing.Point(61, 59);
+            this.PlaybackComponents.Location = new System.Drawing.Point(40, 12);
             this.PlaybackComponents.Name = "PlaybackComponents";
             this.PlaybackComponents.Size = new System.Drawing.Size(286, 199);
             this.PlaybackComponents.TabIndex = 1;
             // 
             // MsgTextBox
             // 
-            this.MsgTextBox.Location = new System.Drawing.Point(61, 276);
+            this.MsgTextBox.Location = new System.Drawing.Point(40, 234);
             this.MsgTextBox.Name = "MsgTextBox";
-            this.MsgTextBox.Size = new System.Drawing.Size(555, 343);
+            this.MsgTextBox.Size = new System.Drawing.Size(512, 343);
             this.MsgTextBox.TabIndex = 2;
             this.MsgTextBox.Text = "";
             // 
@@ -58,7 +58,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(765, 726);
+            this.ClientSize = new System.Drawing.Size(589, 594);
             this.Controls.Add(this.MsgTextBox);
             this.Controls.Add(this.PlaybackComponents);
             this.Controls.Add(this.ApplyButton);

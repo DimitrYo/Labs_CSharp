@@ -91,5 +91,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Advent_Chamber_Orchestra_-_08_-_Vivaldi_-_Concerto_in_C_Major_for_Oboe_and_Orchestra_andante.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

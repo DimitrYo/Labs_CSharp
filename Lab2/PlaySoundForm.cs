@@ -7,15 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace IMS.Playback.GUI {
     public partial class PlaySoundForm : Form {
-        public MobilePhone myPhone { get; private  set; }
+        public MobilePhone myPhone { get; private set; }
         private OutputControl output;
 
         public PlaySoundForm() {
             InitializeComponent();
-            
+
             output = new OutputControl();
             myPhone = new MobilePhone(output);
 
@@ -24,7 +25,7 @@ namespace IMS.Playback.GUI {
                 PlaybackComponents.Items.Add(item);
             }
             PlaybackComponents.SetSelected(1, true);
-            
+
         }
 
         private void applyClick(object sender, EventArgs e) {
@@ -32,6 +33,13 @@ namespace IMS.Playback.GUI {
             Attach(selectedItem);
             myPhone.PlayLast();
             MsgTextBox.Text = output.TextOutput;
+            System.Media.SystemSounds.Asterisk.Play();
+
+            //Getted from https://freemusicarchive.org/search/?sort=track_date_published&d=1&page=2&quicksearch=vivaldi
+            var player = new SoundPlayer(Properties.Resources.Vivaldi);
+            player.Play();
+
+            output.WriteLine("");
         }
 
         public void Attach(int selectedItem) {
