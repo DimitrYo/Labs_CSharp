@@ -12,7 +12,7 @@ using System.Media;
 namespace IMS.Playback.GUI {
     public partial class PlaySoundForm : Form {
         public MobilePhone myPhone { get; private set; }
-        private OutputControl output;
+        public IOutput output;
 
         public PlaySoundForm() {
             InitializeComponent();
@@ -27,6 +27,7 @@ namespace IMS.Playback.GUI {
             PlaybackComponents.SetSelected(1, true);
 
         }
+
 
         private void applyClick(object sender, EventArgs e) {
             int selectedItem = PlaybackComponents.SelectedIndex + 1;

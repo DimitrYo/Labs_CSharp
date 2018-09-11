@@ -47,11 +47,16 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="iPhoneHeadsetTest.cs" />
+    <Compile Include="PlaySound\iPhoneHeadsetTest.cs" />
+    <Compile Include="PlaySound\PhoneSpeakerTest.cs" />
+    <Compile Include="PlaySound\SamsungHeadsetTest.cs" />
+    <Compile Include="PlaySound\UnofficialPhoneHeadsetTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LoudSpeaker.cs" />
+    <Compile Include="PlaySound\LoudSpeakerTest.cs" />
+    <Compile Include="PlaySoundFormTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

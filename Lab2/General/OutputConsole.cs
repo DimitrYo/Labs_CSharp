@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IMS.Playback.GUI {
     public class OutputConsole : IOutput {
-
+        public string TextOutput { get; set; }
         public void Write(string text) {
             Console.Write(text);
         }

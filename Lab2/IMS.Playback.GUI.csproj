@@ -51,7 +51,7 @@
     <Compile Include="General\MobilePhone.cs" />
     <Compile Include="General\OutputConsole.cs" />
     <Compile Include="General\OutputControl.cs" />
-    <Compile Include="General\PlaySound.cs" />
+    <Compile Include="PlaySound\PlaySound.cs" />
     <Compile Include="PlaySoundForm.cs">
       <SubType>Form</SubType>
     </Compile>
