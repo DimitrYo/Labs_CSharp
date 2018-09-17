@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D7BF105E-B5F9-481C-B920-F5E815267B43}</ProjectGuid>
+    <ProjectGuid>{82459FAE-A939-4D23-BCB0-6F0F4FB5B8B0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IMS.Playback.GUI.Test</RootNamespace>
-    <AssemblyName>IMS.Playback.GUI.Test</AssemblyName>
+    <RootNamespace>IMS.SMS.Test</RootNamespace>
+    <AssemblyName>IMS.SMS.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -47,28 +47,18 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlaySound\iPhoneHeadsetTest.cs" />
-    <Compile Include="PlaySound\PhoneSpeakerTest.cs" />
-    <Compile Include="PlaySound\SamsungHeadsetTest.cs" />
-    <Compile Include="PlaySound\UnofficialPhoneHeadsetTest.cs" />
+    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PlaySound\LoudSpeakerTest.cs" />
-    <Compile Include="PlaySoundFormTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IMS.Playback.Console\IMS.Playback.csproj">
-      <Project>{c498129b-dd01-4ed0-ac37-11524a10755a}</Project>
-      <Name>IMS.Playback</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lab2\IMS.Playback.GUI.csproj">
-      <Project>{673fba0c-e7d6-47e2-8114-6de32906e68a}</Project>
-      <Name>IMS.Playback.GUI</Name>
+    <ProjectReference Include="..\IMS.SMS.GUI\IMS.SMS.GUI.csproj">
+      <Project>{bb1fabb4-29da-4534-a2d1-cd862a5089f5}</Project>
+      <Name>IMS.SMS.GUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

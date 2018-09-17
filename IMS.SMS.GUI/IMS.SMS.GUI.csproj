@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{673FBA0C-E7D6-47E2-8114-6DE32906E68A}</ProjectGuid>
+    <ProjectGuid>{BB1FABB4-29DA-4534-A2D1-CD862A5089F5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>IMS.Playback.GUI</RootNamespace>
-    <AssemblyName>IMS.Playback.GUI</AssemblyName>
+    <RootNamespace>IMS.SMS.GUI</RootNamespace>
+    <AssemblyName>IMS.SMS.GUI</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,21 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlaySoundForm.cs">
+    <Compile Include="SmsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PlaySoundForm.Designer.cs">
-      <DependentUpon>PlaySoundForm.cs</DependentUpon>
+    <Compile Include="SmsForm.Designer.cs">
+      <DependentUpon>SmsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlaySound\iPhoneHeadset.cs" />
-    <Compile Include="PlaySound\LoudSpeaker.cs" />
-    <Compile Include="PlaySound\PhoneSpeaker.cs" />
-    <Compile Include="PlaySound\SamsungHeadset.cs" />
-    <Compile Include="PlaySound\UnofficialPhoneHeadset.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="PlaySoundForm.resx">
-      <DependentUpon>PlaySoundForm.cs</DependentUpon>
+    <EmbeddedResource Include="SmsForm.resx">
+      <DependentUpon>SmsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -70,7 +65,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -84,18 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Advent_Chamber_Orchestra_-_08_-_Vivaldi_-_Concerto_in_C_Major_for_Oboe_and_Orchestra_andante.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Test\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IMS.Playback.Console\IMS.Playback.csproj">
-      <Project>{c498129b-dd01-4ed0-ac37-11524a10755a}</Project>
-      <Name>IMS.Playback</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace IMS.Playback {
     class Program {
         static void Main(string[] args) {
 
-            MobilePhone myPhone = new MobilePhone();
+            var output = new OutputConsole();
+            MobilePhone myPhone = new MobilePhone(output);
             Console.WriteLine(myPhone.GetFullDescription());
             Run(ref myPhone);
 

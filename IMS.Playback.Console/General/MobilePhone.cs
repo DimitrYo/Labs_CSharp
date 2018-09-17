@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 namespace IMS.Playback {
     public class MobilePhone : IDeviceBase {
         private List<PlaySound> SoundDevices;
+        private IOutput output;
         public string Model { get; set; }
 
-        public MobilePhone() {
+        public MobilePhone(IOutput output) {
+            this.output = output;
             this.Manufacturer = "Meizu";
             Model = "M2";
 
@@ -57,10 +59,17 @@ namespace IMS.Playback {
         }
 
         public void Play(int deviceNumver) {
-            Console.WriteLine($"\n{SoundDevices[deviceNumver - 1].GetType().Name} playback selected");
-            Console.WriteLine("Set playback to Mobile");
-            Console.WriteLine("Play sound in Mobile");
+            output.WriteLine($"\n{SoundDevices[deviceNumver - 1].GetType().Name} playback selected");
+            output.WriteLine("Set playback to Mobile");
+            output.WriteLine("Play sound in Mobile");
             SoundDevices[deviceNumver - 1].Play(new object());
+        }
+
+        public void PlayLast() {
+            output.WriteLine($"{SoundDevices[SoundDevices.Count - 1].GetType().Name} playback selected");
+            output.WriteLine("Set playback to Mobile");
+            output.WriteLine("Play sound in Mobile");
+            SoundDevices[SoundDevices.Count - 1].Play(new object());
         }
     }
 }

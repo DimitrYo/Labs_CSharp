@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using IMS.Playback;
 
 namespace IMS.Playback.GUI.Test {
     [TestClass]

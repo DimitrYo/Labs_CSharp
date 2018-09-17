@@ -8,5 +8,7 @@ namespace IMS.Playback {
     public interface IOutput {
         void Write(string text);
         void WriteLine(string text);
+
+        string TextOutput { get; set; }
     }
 }

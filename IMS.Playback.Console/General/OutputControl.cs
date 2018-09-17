@@ -4,15 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS.Playback.GUI {
-    public class OutputConsole : IOutput {
+namespace IMS.Playback {
+    public class OutputControl : IOutput {
+
         public string TextOutput { get; set; }
         public void Write(string text) {
-            Console.Write(text);
-        }
-        public void WriteLine(string text) {
-            Console.WriteLine(text);
+            TextOutput += text;
         }
 
+        public void WriteLine(string text) {
+            TextOutput += text + Environment.NewLine;
+        }
     }
+
 }
+
