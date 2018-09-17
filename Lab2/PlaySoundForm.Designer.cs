@@ -47,7 +47,7 @@
             this.PlaybackComponents.TabIndex = 1;
             // 
             // MsgTextBox
-            // 
+            // ;
             this.MsgTextBox.Location = new System.Drawing.Point(40, 234);
             this.MsgTextBox.Name = "MsgTextBox";
             this.MsgTextBox.Size = new System.Drawing.Size(512, 343);
@@ -62,9 +62,13 @@
             this.Controls.Add(this.MsgTextBox);
             this.Controls.Add(this.PlaybackComponents);
             this.Controls.Add(this.ApplyButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "PlaySoundForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.RightToLeftLayout = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WinForms PlaySound Application";
             this.ResumeLayout(false);
 
