@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+//using System.Windows.Forms;
+using System.Threading;
 
 namespace IMS.SMS.GUI {
     public class SmsProvider {
@@ -15,17 +16,19 @@ namespace IMS.SMS.GUI {
 
         public SmsProvider(SMSReceivedDelegate del ) {
             SMSReceived += del;
-            GenerateMsgTimer = new Timer();
-            GenerateMsgTimer.Tick += OnSmsGenerated;
-            GenerateMsgTimer.Interval = 1000;
-            GenerateMsgTimer.Start();
+            //GenerateMsgTimer = new Timer();
+            //GenerateMsgTimer.Tick += OnSmsGenerated;
+            //GenerateMsgTimer.Interval = 1000;
+            //GenerateMsgTimer.Start();
+            GenerateMsgTimer = new Timer(OnSmsGenerated, null, 0, 1000);
         }
 
-        public void OnSmsGenerated(object o,EventArgs e) {
+        private void OnSmsGenerated(object state) {
             var message = "DRYV";
             SmsCount += 1;
-            SMSReceived?.BeginInvoke( $"Message #{SmsCount} received: " + message, null, null);
+            SMSReceived?.BeginInvoke($"Message #{SmsCount} received: " + message, null, null);
         }
+
     }
 
 }
