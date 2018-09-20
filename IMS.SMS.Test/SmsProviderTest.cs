@@ -19,7 +19,10 @@ namespace IMS.SMS.Test {
         [TestMethod]
         public void RaisingEvents() {
 
-            SMSProvider = new SmsProvider(new SmsProvider.SMSReceivedDelegate(ReceiveEvent));
+            SMSProvider = new SmsProvider();
+            SMSProvider.SMSReceived += ReceiveEvent;
+            SMSProvider.ThreadingTimerStart();
+
             Thread.Sleep(4000);
             Assert.AreEqual(4, receivedEvents.Count);
             Assert.IsNotNull(receivedEvents);

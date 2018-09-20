@@ -27,7 +27,7 @@ namespace IMS.SMS.GUI {
         private void InitializeComponent() {
             this.FormattingComboBox = new System.Windows.Forms.ComboBox();
             this.MessageBox = new System.Windows.Forms.RichTextBox();
-            this.SMSProvider = new SmsProvider(new SmsProvider.SMSReceivedDelegate(OnSmsReceived));
+            this.SMSProvider = new SmsProvider();
             this.SuspendLayout();
             // 
             // FormattingComboBox
@@ -70,24 +70,32 @@ namespace IMS.SMS.GUI {
             this.Text = "SmsProvider";
             this.ResumeLayout(false);
 
+
         }
 
+        private void SetupHandlers() {
+            //
+            // SmsProvider
+            //
+            this.SMSProvider.SMSReceived += new SmsProvider.SMSReceivedDelegate(OnSmsReceived);
+            this.SMSProvider.ThreadingTimerStart();
+        }
         #endregion
 
         private System.Windows.Forms.ComboBox FormattingComboBox;
         private System.Windows.Forms.RichTextBox MessageBox;
         private SmsProvider SMSProvider;
+        public event Func<string, string> Formatter;
+        public delegate string GetLatesLine(Object obj);
+
         readonly object someEventLock = new object();
 
-
-        public event Func<string, string> Formatter;
-
         private string FormatWithDateTimeOnStart(string message) {
-            return  $"[{DateTime.Now}] {message}";
+            return $"[{DateTime.Now}] {message}";
         }
 
         private string FormatWithDateTimeOnEnd(string message) {
-            return  $"{message} [{DateTime.Now}] ";
+            return $"{message} [{DateTime.Now}] ";
         }
 
         private static string FormatUpperCase(string message) {
@@ -108,6 +116,58 @@ namespace IMS.SMS.GUI {
                     msg = Formatter?.Invoke(msg) ?? msg;
                     MessageBox.AppendText($"{msg}{Environment.NewLine}");
                 }
+            }
+        }
+
+        public string GetLastTestMessageBox(Object obj) {           
+            if (MessageBox.InvokeRequired == true) {
+                return (string)this?.Invoke(new GetLatesLine(GetLastTestMessageBox), obj);
+            } else {
+                var items = MessageBox.Lines;
+                return items[items.Length - 1];
+            }           
+        }
+
+        public void FormattingComboBox_SelectedIndexChangedEmulate(int index) {
+            FormattingComboBox.SelectedItem = index;
+        }
+
+        private void FormattingComboBox_SelectedIndexChanged(object sender, EventArgs e) {
+            var item = FormattingComboBox.SelectedItem;
+
+            switch (item) {
+
+                case "None":
+                    AttachOnlyOneHandler(null);
+                    AttachOnlyOneHandler(null);
+                    break;
+
+                case "Start with DateTime":
+                    AttachOnlyOneHandler(FormatWithDateTimeOnStart);
+                    break;
+
+                case "End with DateTime":
+                    AttachOnlyOneHandler(FormatWithDateTimeOnEnd);
+                    break;
+
+                case "Lowercase":
+                    AttachOnlyOneHandler(FormatLowerCase);
+                    break;
+
+                case "Uppercase":
+                    AttachOnlyOneHandler(FormatUpperCase);
+                    break;
+            }
+        }
+
+        private void AttachOnlyOneHandler(Func<string, string> handler) {
+            lock (someEventLock) {
+                if (Formatter != null) {
+                    foreach (var del in Formatter.GetInvocationList()) {
+                        Formatter -= (Func<string, string>)del;
+                    }
+                }
+                Formatter += handler;
             }
         }
     }

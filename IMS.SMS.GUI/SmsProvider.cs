@@ -14,12 +14,7 @@ namespace IMS.SMS.GUI {
         private static int SmsCount { get; set; } = 0;
         private Timer GenerateMsgTimer;
 
-        public SmsProvider(SMSReceivedDelegate del ) {
-            SMSReceived += del;
-            //GenerateMsgTimer = new Timer();
-            //GenerateMsgTimer.Tick += OnSmsGenerated;
-            //GenerateMsgTimer.Interval = 1000;
-            //GenerateMsgTimer.Start();
+        public void ThreadingTimerStart() {
             GenerateMsgTimer = new Timer(OnSmsGenerated, null, 0, 1000);
         }
 
@@ -27,6 +22,10 @@ namespace IMS.SMS.GUI {
             var message = "DRYV";
             SmsCount += 1;
             SMSReceived?.BeginInvoke($"Message #{SmsCount} received: " + message, null, null);
+        }
+
+        public void Dispose() {
+            GenerateMsgTimer.Dispose();
         }
 
     }
