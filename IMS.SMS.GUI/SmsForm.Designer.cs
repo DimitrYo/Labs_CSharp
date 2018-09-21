@@ -85,47 +85,27 @@ namespace IMS.SMS.GUI {
         private System.Windows.Forms.ComboBox FormattingComboBox;
         private System.Windows.Forms.RichTextBox MessageBox;
         private SmsProvider SMSProvider;
-        public event Func<string, string> Formatter;
-        public delegate string GetLatesLine(Object obj);
+        public event Func<string, string> FormatterEvent;
 
         readonly object someEventLock = new object();
-
-        private string FormatWithDateTimeOnStart(string message) {
-            return $"[{DateTime.Now}] {message}";
-        }
-
-        private string FormatWithDateTimeOnEnd(string message) {
-            return $"{message} [{DateTime.Now}] ";
-        }
-
-        private static string FormatUpperCase(string message) {
-            return message.ToUpper();
-        }
-
-        private static string FormatLowerCase(string message) {
-            return message.ToLower();
-        }
 
         public void OnSmsReceived(string msg) {
             lock (someEventLock) {
 
                 if (MessageBox.InvokeRequired == true) {
                     this?.BeginInvoke(new SmsProvider.SMSReceivedDelegate(OnSmsReceived), msg);
-                }
-                else {
-                    msg = Formatter?.Invoke(msg) ?? msg;
+                } else {
+                    msg = FormatterEvent?.Invoke(msg) ?? msg;
                     MessageBox.AppendText($"{msg}{Environment.NewLine}");
                 }
             }
         }
 
-        public string GetLastTestMessageBox(Object obj) {           
-            if (MessageBox.InvokeRequired == true) {
-                return (string)this?.Invoke(new GetLatesLine(GetLastTestMessageBox), obj);
-            } else {
+        public string GetLastTestMessageBox(Object obj) {
+            lock (someEventLock) {
                 var items = MessageBox.Lines;
                 return items[items.Length - 1];
-            }           
+            }
         }
 
         public void FormattingComboBox_SelectedIndexChangedEmulate(int index) {
@@ -138,36 +118,36 @@ namespace IMS.SMS.GUI {
             switch (item) {
 
                 case "None":
-                    AttachOnlyOneHandler(null);
-                    AttachOnlyOneHandler(null);
-                    break;
+                AttachOnlyOneHandler(null);
+                AttachOnlyOneHandler(null);
+                break;
 
                 case "Start with DateTime":
-                    AttachOnlyOneHandler(FormatWithDateTimeOnStart);
-                    break;
+                AttachOnlyOneHandler(Formatter.FormatWithDateTimeOnStart);
+                break;
 
                 case "End with DateTime":
-                    AttachOnlyOneHandler(FormatWithDateTimeOnEnd);
-                    break;
+                AttachOnlyOneHandler(Formatter.FormatWithDateTimeOnEnd);
+                break;
 
                 case "Lowercase":
-                    AttachOnlyOneHandler(FormatLowerCase);
-                    break;
+                AttachOnlyOneHandler(Formatter.FormatLowerCase);
+                break;
 
                 case "Uppercase":
-                    AttachOnlyOneHandler(FormatUpperCase);
-                    break;
+                AttachOnlyOneHandler(Formatter.FormatUpperCase);
+                break;
             }
         }
 
         private void AttachOnlyOneHandler(Func<string, string> handler) {
             lock (someEventLock) {
-                if (Formatter != null) {
-                    foreach (var del in Formatter.GetInvocationList()) {
-                        Formatter -= (Func<string, string>)del;
+                if (FormatterEvent != null) {
+                    foreach (var del in FormatterEvent.GetInvocationList()) {
+                        FormatterEvent -= (Func<string, string>)del;
                     }
                 }
-                Formatter += handler;
+                FormatterEvent += handler;
             }
         }
     }
