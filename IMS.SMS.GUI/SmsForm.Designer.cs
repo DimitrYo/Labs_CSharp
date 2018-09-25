@@ -140,7 +140,7 @@ namespace IMS.SMS.GUI {
             }
         }
 
-        private void AttachOnlyOneHandler(Func<string, string> handler) {
+        public void AttachOnlyOneHandler(Func<string, string> handler) {
             lock (someEventLock) {
                 if (FormatterEvent != null) {
                     foreach (var del in FormatterEvent.GetInvocationList()) {
