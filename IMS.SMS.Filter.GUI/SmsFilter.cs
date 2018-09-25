@@ -26,7 +26,6 @@ namespace IMS.SMS.Filter.GUI {
             this.SMSProvider.ThreadingTimerStartMsg();
         }
 
-        // New one
         public void OnSmsReceivedMsg(Message msg) {
             lock (someEventLock) {
                 if (InvokeRequired) {
@@ -35,7 +34,7 @@ namespace IMS.SMS.Filter.GUI {
                     msg = FormatterMsgEvent?.Invoke(msg) ?? msg;
                     MsgTextList.Add(msg);
                     OnUserChange();
-                    OnMsgTextListChange();
+                    MessageBoxUpdate();
                 }
             }
         }
@@ -47,9 +46,7 @@ namespace IMS.SMS.Filter.GUI {
             userComboBox.SelectedIndex = selIndex;
         }
 
-
-
-        private void OnMsgTextListChange() {
+        private void MessageBoxUpdate() {
             var messages = MsgTextList;
 
             messages = FilterByUser(messages);
@@ -148,7 +145,7 @@ namespace IMS.SMS.Filter.GUI {
         }
 
         private void userComboBox_SelectedIndexChanged(object sender, System.EventArgs e) {
-            OnMsgTextListChange();
+            MessageBoxUpdate();
         }
 
         private void startButton_Click(object sender, System.EventArgs e) {
@@ -160,15 +157,15 @@ namespace IMS.SMS.Filter.GUI {
         }
 
         private void searchTextBox_TextChanged(object sender, EventArgs e) {
-            OnMsgTextListChange();
+            MessageBoxUpdate();
         }
 
         private void dateTimePickerMax_ValueChanged(object sender, EventArgs e) {
-            OnMsgTextListChange();
+            MessageBoxUpdate();
         }
 
         private void dateTimePickerMin_ValueChanged(object sender, EventArgs e) {
-            OnMsgTextListChange();
+            MessageBoxUpdate();
         }
     }
 }

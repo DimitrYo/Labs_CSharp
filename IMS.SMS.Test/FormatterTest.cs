@@ -19,22 +19,25 @@ namespace IMS.SMS.Test {
             Assert.AreEqual(expected,actual[0]);
         }
 
+        [TestMethod]
         public void FormatWithDateTimeOnEndTest() {
             var expected = ']';
             var actual = Formatter.FormatWithDateTimeOnEnd(msg);
             Assert.AreEqual(expected, actual[actual.Length - 1]);
         }
 
+        [TestMethod]
         public void FormatUpperCase() {
-            var expected = 'T';
+            var expected = 'E';
             var actual = Formatter.FormatUpperCase(msg);
-            Assert.AreEqual(expected, actual[0]);
+            Assert.AreEqual(expected, actual[1]);
         }
 
+        [TestMethod]
         public void FormatLowerCase() {
-            var expected = 'E';
+            var expected = 't';
             var actual = Formatter.FormatLowerCase(msg);
-            Assert.AreEqual(expected, actual[1]);
+            Assert.AreEqual(expected, actual[0]);
         }
     }
 }

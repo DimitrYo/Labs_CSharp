@@ -11,7 +11,7 @@ namespace IMS.SMS.GUI {
         }
 
         public static string FormatWithDateTimeOnEnd(string message) {
-            return $"{message} [{DateTime.Now}] ";
+            return $"{message} [{DateTime.Now}]";
         }
 
         public static string FormatUpperCase(string message) {

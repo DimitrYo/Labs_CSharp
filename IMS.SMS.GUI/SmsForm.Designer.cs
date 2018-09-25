@@ -96,7 +96,7 @@ namespace IMS.SMS.GUI {
                     this?.BeginInvoke(new SmsProvider.SMSReceivedDelegate(OnSmsReceived), msg);
                 } else {
                     msg = FormatterEvent?.Invoke(msg) ?? msg;
-                    MessageBox.AppendText($"{msg}{Environment.NewLine}");
+                    MessageBox.Invoke(new Action(() => MessageBox.AppendText($"{msg}{Environment.NewLine}")));
                 }
             }
         }
