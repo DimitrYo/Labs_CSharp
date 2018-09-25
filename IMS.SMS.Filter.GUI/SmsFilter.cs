@@ -52,15 +52,23 @@ namespace IMS.SMS.Filter.GUI {
         private void OnMsgTextListChange() {
 
             var messages = MsgTextList;
-            if (this.userComboBox.SelectedItem != null ) {
-                messages = messages.Where(m => m.User.Equals(userComboBox.SelectedItem.ToString()) ).ToList();
+            if (this.userComboBox.SelectedItem != null) {
+                messages = messages.Where(m => m.User.Equals(userComboBox.SelectedItem.ToString())).ToList();
+            }
+
+            if (dateTimePickerMin.Checked) {
+                messages = messages.Where(m => m.ReceivingTime >= dateTimePickerMin.Value).ToList();
+            }
+
+            if (dateTimePickerMax.Checked) {
+                messages = messages.Where(m => m.ReceivingTime <= dateTimePickerMax.Value).ToList();
             }
 
             IEnumerable<string> temp = messages.Select(el => el.ToString());
             if (this.searchTextBox.Text.Length > 0) {
                 temp = temp.Where(s => s.Contains(this.searchTextBox.Text));
             }
-            MessageBox.Lines = temp.ToArray();               
+            MessageBox.Lines = temp.ToArray();
         }
 
         public string GetLastTestMessageBox(Object obj) {
@@ -126,6 +134,14 @@ namespace IMS.SMS.Filter.GUI {
         }
 
         private void searchTextBox_TextChanged(object sender, EventArgs e) {
+            OnMsgTextListChange();
+        }
+
+        private void dateTimePickerMax_ValueChanged(object sender, EventArgs e) {
+            OnMsgTextListChange();
+        }
+
+        private void dateTimePickerMin_ValueChanged(object sender, EventArgs e) {
             OnMsgTextListChange();
         }
     }

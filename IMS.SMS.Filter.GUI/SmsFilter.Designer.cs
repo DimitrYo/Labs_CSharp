@@ -1,4 +1,6 @@
-﻿namespace IMS.SMS.Filter.GUI {
+﻿using System;
+
+namespace IMS.SMS.Filter.GUI {
     partial class SmsFilter {
         /// <summary>
         /// Required designer variable.
@@ -30,8 +32,8 @@
             this.stopButton = new System.Windows.Forms.Button();
             this.userComboBox = new System.Windows.Forms.ComboBox();
             this.searchTextBox = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerMin = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerMax = new System.Windows.Forms.DateTimePicker();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -107,26 +109,35 @@
             this.searchTextBox.TabIndex = 5;
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
-            // dateTimePicker1
+            // dateTimePickerMin
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(3, 30);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(173, 20);
-            this.dateTimePicker1.TabIndex = 6;
+            this.dateTimePickerMin.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePickerMin.Location = new System.Drawing.Point(3, 30);
+            this.dateTimePickerMin.Name = "dateTimePickerMin";
+            this.dateTimePickerMin.ShowCheckBox = true;
+            this.dateTimePickerMin.ShowUpDown = true;
+            this.dateTimePickerMin.Size = new System.Drawing.Size(173, 20);
+            this.dateTimePickerMin.TabIndex = 6;
+            this.dateTimePickerMin.ValueChanged += new System.EventHandler(this.dateTimePickerMin_ValueChanged);
             // 
-            // dateTimePicker2
+            // dateTimePickerMax
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(182, 30);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(173, 20);
-            this.dateTimePicker2.TabIndex = 7;
+            this.dateTimePickerMax.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePickerMax.Location = new System.Drawing.Point(182, 30);
+            this.dateTimePickerMax.Name = "dateTimePickerMax";
+            this.dateTimePickerMax.ShowCheckBox = true;
+            this.dateTimePickerMax.ShowUpDown = true;
+            this.dateTimePickerMax.Size = new System.Drawing.Size(173, 20);
+            this.dateTimePickerMax.TabIndex = 7;
+            this.dateTimePickerMax.Value = System.DateTime.Now + TimeSpan.FromMinutes(1);
+            this.dateTimePickerMax.ValueChanged += new System.EventHandler(this.dateTimePickerMax_ValueChanged);
             // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.userComboBox);
             this.flowLayoutPanel2.Controls.Add(this.searchTextBox);
-            this.flowLayoutPanel2.Controls.Add(this.dateTimePicker1);
-            this.flowLayoutPanel2.Controls.Add(this.dateTimePicker2);
+            this.flowLayoutPanel2.Controls.Add(this.dateTimePickerMin);
+            this.flowLayoutPanel2.Controls.Add(this.dateTimePickerMax);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(6, 19);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(387, 74);
@@ -194,8 +205,8 @@
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.ComboBox userComboBox;
         private System.Windows.Forms.TextBox searchTextBox;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePickerMin;
+        private System.Windows.Forms.DateTimePicker dateTimePickerMax;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
