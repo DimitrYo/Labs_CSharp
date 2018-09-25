@@ -34,9 +34,7 @@ namespace IMS.SMS.Filter.GUI {
                 } else {
                     msg = FormatterMsgEvent?.Invoke(msg) ?? msg;
                     MsgTextList.Add(msg);
-
                     OnUserChange();
-
                     OnMsgTextListChange();
                 }
             }
@@ -49,26 +47,54 @@ namespace IMS.SMS.Filter.GUI {
             userComboBox.SelectedIndex = selIndex;
         }
 
+
+
         private void OnMsgTextListChange() {
-
             var messages = MsgTextList;
-            if (this.userComboBox.SelectedItem != null) {
-                messages = messages.Where(m => m.User.Equals(userComboBox.SelectedItem.ToString())).ToList();
+
+            messages = FilterByUser(messages);
+
+            messages = FilterByMinDateTime(messages);
+
+            messages = FilterByMaxDate(messages);
+
+            IEnumerable<string> temp = messages.Select(el => el.ToString());
+
+            temp = FilterByContainedString(temp);
+
+            MessageBox.Lines = temp.ToArray();
+        }
+
+        private IEnumerable<string> FilterByContainedString(IEnumerable<string> temp) {
+            if (this.searchTextBox.Text.Length > 0) {
+                temp = temp.Where(s => s.Contains(this.searchTextBox.Text));
             }
 
-            if (dateTimePickerMin.Checked) {
-                messages = messages.Where(m => m.ReceivingTime >= dateTimePickerMin.Value).ToList();
-            }
+            return temp;
+        }
 
+        private List<Message> FilterByMaxDate(List<Message> messages) {
             if (dateTimePickerMax.Checked) {
                 messages = messages.Where(m => m.ReceivingTime <= dateTimePickerMax.Value).ToList();
             }
 
-            IEnumerable<string> temp = messages.Select(el => el.ToString());
-            if (this.searchTextBox.Text.Length > 0) {
-                temp = temp.Where(s => s.Contains(this.searchTextBox.Text));
+            return messages;
+        }
+
+        private List<Message> FilterByMinDateTime(List<Message> messages) {
+            if (dateTimePickerMin.Checked) {
+                messages = messages.Where(m => m.ReceivingTime >= dateTimePickerMin.Value).ToList();
             }
-            MessageBox.Lines = temp.ToArray();
+
+            return messages;
+        }
+
+        private List<Message> FilterByUser(List<Message> messages) {
+            if (this.userComboBox.SelectedItem != null) {
+                messages = messages.Where(m => m.User.Equals(userComboBox.SelectedItem.ToString())).ToList();
+            }
+
+            return messages;
         }
 
         public string GetLastTestMessageBox(Object obj) {
