@@ -14,7 +14,7 @@ namespace IMS.SMS.Filter.GUI.Test {
         public void TestMethod1() {
 
             var form = new SmsFilter();
-            var FilterByMaxDate = form.GetType().GetMethod("FilterByMaxDate", BindingFlags.Instance | BindingFlags.NonPublic);
+            //var FilterByMaxDate = form.GetType().GetMethod("FilterByMaxDate", BindingFlags.Instance | BindingFlags.NonPublic);
 
         }
     }

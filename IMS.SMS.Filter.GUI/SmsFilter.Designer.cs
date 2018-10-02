@@ -96,7 +96,7 @@ namespace IMS.SMS.Filter.GUI {
             this.userComboBox.Size = new System.Drawing.Size(173, 21);
             this.userComboBox.TabIndex = 4;
             this.userComboBox.Text = "Select User";
-            this.userComboBox.SelectedIndexChanged += new System.EventHandler(this.userComboBox_SelectedIndexChanged);
+            //this.userComboBox.SelectedIndexChanged += new System.EventHandler(this.userComboBox_SelectedIndexChanged);
             // 
             // searchTextBox
             // 
@@ -104,7 +104,7 @@ namespace IMS.SMS.Filter.GUI {
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(173, 20);
             this.searchTextBox.TabIndex = 5;
-            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            //this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
             // dateTimePickerMin
             // 
@@ -115,7 +115,7 @@ namespace IMS.SMS.Filter.GUI {
             this.dateTimePickerMin.ShowUpDown = true;
             this.dateTimePickerMin.Size = new System.Drawing.Size(173, 20);
             this.dateTimePickerMin.TabIndex = 6;
-            this.dateTimePickerMin.ValueChanged += new System.EventHandler(this.dateTimePickerMin_ValueChanged);
+            //this.dateTimePickerMin.ValueChanged += new System.EventHandler(this.dateTimePickerMin_ValueChanged);
             // 
             // dateTimePickerMax
             // 
@@ -127,7 +127,7 @@ namespace IMS.SMS.Filter.GUI {
             this.dateTimePickerMax.Size = new System.Drawing.Size(173, 20);
             this.dateTimePickerMax.TabIndex = 7;
             this.dateTimePickerMax.Value = new System.DateTime(2018, 10, 2, 15, 21, 18, 270);
-            this.dateTimePickerMax.ValueChanged += new System.EventHandler(this.dateTimePickerMax_ValueChanged);
+            //this.dateTimePickerMax.ValueChanged += new System.EventHandler(this.dateTimePickerMax_ValueChanged);
             // 
             // flowLayoutPanel2
             // 

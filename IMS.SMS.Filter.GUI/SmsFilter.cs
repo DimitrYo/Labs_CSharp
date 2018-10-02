@@ -6,7 +6,7 @@ using Message = IMS.SMS.GUI.Message;
 using System.Linq;
 
 namespace IMS.SMS.Filter.GUI {
-    public partial class SmsFilter : Form, ISmsFilterView {
+    public partial class SmsFilter : Form, IView, IModelObserver {
         public SmsFilter() {
             InitializeComponent();
             SetupHandlers();
@@ -14,53 +14,86 @@ namespace IMS.SMS.Filter.GUI {
 
 
         public event Func<Message, Message> FormatterMsgEvent;
-        readonly object someEventLock = new object();
-        private SmsProvider SMSProvider = new SmsProvider();
-        private List<Message> MsgTextList = new List<Message>();
+        //readonly object someEventLock = new object();
+        //private SmsProvider SMSProvider = new SmsProvider();
+        //private List<Message> MsgTextList = new List<Message>();
+
+        IController controller;
+        public event ViewHandler<IView> changed;
+        // View will set the associated controller, this is how view is linked to the controller.
+        public void setController(IController cont) {
+            controller = cont;
+        }
+
 
         private void SetupHandlers() {
             //
             // SmsProvider
             //
-            this.SMSProvider.SMSReceivedMsg += OnSmsReceivedMsg;
-            this.SMSProvider.ThreadingTimerStartMsg();
+            //this.SMSProvider.SMSReceivedMsg += OnSmsReceivedMsg;
+            controller?.StartTimer();
         }
 
-        public void OnSmsReceivedMsg(Message msg) {
-            lock (someEventLock) {
-                if (InvokeRequired) {
-                    this?.BeginInvoke(new Action<Message>(OnSmsReceivedMsg), msg);
-                } else {
-                    msg = FormatterMsgEvent?.Invoke(msg) ?? msg;
-                    MsgTextList.Add(msg);
-                    OnUserChange();
-                    MessageBoxUpdate();
-                }
-            }
-        }
+        //public void OnSmsReceivedMsg(Message msg) {
+        //    lock (someEventLock) {
+        //        if (InvokeRequired) {
+        //            this?.BeginInvoke(new Action<Message>(OnSmsReceivedMsg), msg);
+        //        } else {
+        //            msg = FormatterMsgEvent?.Invoke(msg) ?? msg;
+        //            MsgTextList.Add(msg);
+        //            OnUserChange();
+        //            MessageBoxUpdate();
+        //        }
+        //    }
+        //}
 
         private void OnUserChange() {
-            var selIndex = userComboBox.SelectedIndex;
-            userComboBox.Items.Clear();
-            userComboBox.Items.AddRange(MsgTextList.Select(m => m.User).Distinct().ToArray());
-            userComboBox.SelectedIndex = selIndex;
+            //var selIndex = userComboBox.SelectedIndex;
+            //userComboBox.Items.Clear();
+            //userComboBox.Items.AddRange(MsgTextList.Select(m => m.User).Distinct().ToArray());
+            //userComboBox.SelectedIndex = selIndex;
+        }
+
+
+        public void MessageBoxUpdate2(IModel m, ModelEventArgs e) {
+            if (InvokeRequired) {
+                MessageBox?.BeginInvoke(new Action<IModel,ModelEventArgs>(MessageBoxUpdate2),m,e);
+            } else {
+                var messages = e.MsgTextList.AsEnumerable();
+
+                //messages = FilterByUser(messages);
+
+                //messages = FilterByMinDateTime(messages);
+
+                //messages = FilterByMaxDate(messages);
+
+                IEnumerable<string> temp = messages.Select(el => el.ToString());
+
+                temp = FilterByContainedString(temp);
+                MessageBox.Lines = temp.ToArray();
+            }            
         }
 
         private void MessageBoxUpdate() {
-            var messages = MsgTextList.AsEnumerable();
+            //IEnumerable<string> temp = UpdateView();
 
-            messages = FilterByUser(messages);
-
-            messages = FilterByMinDateTime(messages);
-
-            messages = FilterByMaxDate(messages);
-
-            IEnumerable<string> temp = messages.Select(el => el.ToString());
-
-            temp = FilterByContainedString(temp);
-
-            MessageBox.Lines = temp.ToArray();
+            //MessageBox.Lines = temp.ToArray();
         }
+
+        //private IEnumerable<string> UpdateView() {
+        //    var messages = MsgTextList.AsEnumerable();
+
+        //    messages = FilterByUser(messages);
+
+        //    messages = FilterByMinDateTime(messages);
+
+        //    messages = FilterByMaxDate(messages);
+
+        //    IEnumerable<string> temp = messages.Select(el => el.ToString());
+
+        //    temp = FilterByContainedString(temp);
+        //    return temp;
+        //}
 
         private IEnumerable<Message> FilterByMaxDate(IEnumerable<Message> messages) {
             if (dateTimePickerMax.Checked) {
@@ -95,10 +128,8 @@ namespace IMS.SMS.Filter.GUI {
         }
 
         public string GetLastTestMessageBox(Object obj) {
-            lock (someEventLock) {
                 var items = MessageBox.Lines;
                 return items[items.Length - 1];
-            }
         }
 
         public void FormattingComboBox_SelectedIndexChangedEmulate(int index) {
@@ -106,66 +137,64 @@ namespace IMS.SMS.Filter.GUI {
         }
 
         private void FormattingComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-            var item = FormattingComboBox.SelectedItem;
+            //var item = FormattingComboBox.SelectedItem;
 
-            switch (item) {
+            //switch (item) {
 
-                case "None":
-                AttachOnlyOneHandler(null);
-                AttachOnlyOneHandler(null);
-                break;
+            //    case "None":
+            //    AttachOnlyOneHandler(null);
+            //    AttachOnlyOneHandler(null);
+            //    break;
 
-                case "Start with DateTime":
-                AttachOnlyOneHandler(Message.FormatWithDateTimeOnStart);
-                break;
+            //    case "Start with DateTime":
+            //    AttachOnlyOneHandler(Message.FormatWithDateTimeOnStart);
+            //    break;
 
-                case "End with DateTime":
-                AttachOnlyOneHandler(Message.FormatWithDateTimeOnEnd);
-                break;
+            //    case "End with DateTime":
+            //    AttachOnlyOneHandler(Message.FormatWithDateTimeOnEnd);
+            //    break;
 
-                case "Lowercase":
-                AttachOnlyOneHandler(Message.FormatLowerCase);
-                break;
+            //    case "Lowercase":
+            //    AttachOnlyOneHandler(Message.FormatLowerCase);
+            //    break;
 
-                case "Uppercase":
-                AttachOnlyOneHandler(Message.FormatUpperCase);
-                break;
-            }
+            //    case "Uppercase":
+            //    AttachOnlyOneHandler(Message.FormatUpperCase);
+            //    break;
+            //}
         }
 
         public void AttachOnlyOneHandler(Func<Message, Message> handler) {
-            lock (someEventLock) {
                 if (FormatterMsgEvent != null) {
                     foreach (var del in FormatterMsgEvent.GetInvocationList()) {
                         FormatterMsgEvent -= (Func<Message, Message>)del;
                     }
-                }
                 FormatterMsgEvent += handler;
             }
         }
 
-        private void userComboBox_SelectedIndexChanged(object sender, System.EventArgs e) {
-            MessageBoxUpdate();
-        }
+        //private void userComboBox_SelectedIndexChanged(object sender, System.EventArgs e) {
+        //    MessageBoxUpdate();
+        //}
 
         private void startButton_Click(object sender, System.EventArgs e) {
-            this.SMSProvider.ThreadingTimerStartMsg();
+            controller.StartTimer();
         }
 
         private void stopButton_Click(object sender, System.EventArgs e) {
-            this.SMSProvider.ThreadingTimerStop();
+            controller.StopTimer();
         }
 
-        private void searchTextBox_TextChanged(object sender, EventArgs e) {
-            MessageBoxUpdate();
-        }
+        //private void searchTextBox_TextChanged(object sender, EventArgs e) {
+        //    MessageBoxUpdate();
+        //}
 
-        private void dateTimePickerMax_ValueChanged(object sender, EventArgs e) {
-            MessageBoxUpdate();
-        }
+        //private void dateTimePickerMax_ValueChanged(object sender, EventArgs e) {
+        //    MessageBoxUpdate();
+        //}
 
-        private void dateTimePickerMin_ValueChanged(object sender, EventArgs e) {
-            MessageBoxUpdate();
-        }
+        //private void dateTimePickerMin_ValueChanged(object sender, EventArgs e) {
+        //    MessageBoxUpdate();
+        //}
     }
 }
