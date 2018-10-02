@@ -25,7 +25,6 @@ namespace IMS.SMS.Filter.GUI {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             this.FormattingComboBox = new System.Windows.Forms.ComboBox();
             this.MessageBox = new System.Windows.Forms.RichTextBox();
             this.startButton = new System.Windows.Forms.Button();
@@ -38,12 +37,10 @@ namespace IMS.SMS.Filter.GUI {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // FormattingComboBox
@@ -129,7 +126,7 @@ namespace IMS.SMS.Filter.GUI {
             this.dateTimePickerMax.ShowUpDown = true;
             this.dateTimePickerMax.Size = new System.Drawing.Size(173, 20);
             this.dateTimePickerMax.TabIndex = 7;
-            this.dateTimePickerMax.Value = System.DateTime.Now + TimeSpan.FromMinutes(1);
+            this.dateTimePickerMax.Value = new System.DateTime(2018, 10, 2, 15, 21, 18, 270);
             this.dateTimePickerMax.ValueChanged += new System.EventHandler(this.dateTimePickerMax_ValueChanged);
             // 
             // flowLayoutPanel2
@@ -193,7 +190,6 @@ namespace IMS.SMS.Filter.GUI {
             this.groupBox1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -211,6 +207,5 @@ namespace IMS.SMS.Filter.GUI {
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }

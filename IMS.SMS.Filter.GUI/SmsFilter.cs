@@ -6,7 +6,7 @@ using Message = IMS.SMS.GUI.Message;
 using System.Linq;
 
 namespace IMS.SMS.Filter.GUI {
-    public partial class SmsFilter : Form {
+    public partial class SmsFilter : Form, ISmsFilterView {
         public SmsFilter() {
             InitializeComponent();
             SetupHandlers();
@@ -47,7 +47,7 @@ namespace IMS.SMS.Filter.GUI {
         }
 
         private void MessageBoxUpdate() {
-            var messages = MsgTextList;
+            var messages = MsgTextList.AsEnumerable();
 
             messages = FilterByUser(messages);
 
@@ -62,15 +62,7 @@ namespace IMS.SMS.Filter.GUI {
             MessageBox.Lines = temp.ToArray();
         }
 
-        private IEnumerable<string> FilterByContainedString(IEnumerable<string> temp) {
-            if (this.searchTextBox.Text.Length > 0) {
-                temp = temp.Where(s => s.Contains(this.searchTextBox.Text));
-            }
-
-            return temp;
-        }
-
-        private List<Message> FilterByMaxDate(List<Message> messages) {
+        private IEnumerable<Message> FilterByMaxDate(IEnumerable<Message> messages) {
             if (dateTimePickerMax.Checked) {
                 messages = messages.Where(m => m.ReceivingTime <= dateTimePickerMax.Value).ToList();
             }
@@ -78,7 +70,7 @@ namespace IMS.SMS.Filter.GUI {
             return messages;
         }
 
-        private List<Message> FilterByMinDateTime(List<Message> messages) {
+        private IEnumerable<Message> FilterByMinDateTime(IEnumerable<Message> messages) {
             if (dateTimePickerMin.Checked) {
                 messages = messages.Where(m => m.ReceivingTime >= dateTimePickerMin.Value).ToList();
             }
@@ -86,12 +78,20 @@ namespace IMS.SMS.Filter.GUI {
             return messages;
         }
 
-        private List<Message> FilterByUser(List<Message> messages) {
+        private IEnumerable<Message> FilterByUser(IEnumerable<Message> messages) {
             if (this.userComboBox.SelectedItem != null) {
-                messages = messages.Where(m => m.User.Equals(userComboBox.SelectedItem.ToString())).ToList();
+                messages = messages.Where(m => m.User.Equals(userComboBox.SelectedItem.ToString()));
             }
 
             return messages;
+        }
+
+        private IEnumerable<string> FilterByContainedString(IEnumerable<string> temp) {
+            if (this.searchTextBox.Text.Length > 0) {
+                temp = temp.Where(s => s.Contains(this.searchTextBox.Text));
+            }
+
+            return temp;
         }
 
         public string GetLastTestMessageBox(Object obj) {
