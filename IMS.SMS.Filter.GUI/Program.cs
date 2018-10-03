@@ -16,6 +16,8 @@ namespace IMS.SMS.Filter.GUI {
             var view = new SmsFilter();
             IModel mdl = new SmsStorage();
             IController cnt = new Controllet(view, mdl);
+            cnt.StartTimer();
+
             Application.Run(view);
         }
     }

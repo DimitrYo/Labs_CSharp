@@ -36,7 +36,7 @@ namespace IMS.SMS.GUI {
             SmsCount += 1;
             var msg = new Message {
                 Id = SmsCount,
-                User = Contacs.GetRandomContact(),
+                User = Contacts.GetRandomContact(),
                 Text = "You won a ticket to Mars!",
                 ReceivingTime = DateTime.Now
             };

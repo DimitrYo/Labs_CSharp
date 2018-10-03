@@ -7,14 +7,30 @@ using System.Threading.Tasks;
 namespace IMS.SMS.Filter.GUI {
 
     public delegate void ViewHandler<IView>(IView sender, ViewEventArgs e);
-    // The event arguments class that will be used while firing the events
-    // for this program, we have only one value which the user changed.
+
     public class ViewEventArgs : EventArgs {
-        public int value;
-        public ViewEventArgs(int v) { value = v; }
+        public string UserToFilter { get; set; }
+        public string TextToFilter { get; set; }
+        public DateTime MinDateTimeToFilter { get; set; }
+        public DateTime MaxDateTimeToFilter { get; set; }
+        public string StyleMessage { get; set; }
+        public bool FilterByMinDateChecked { get; set; }
+        public bool FilterByMaxDateChecked { get; internal set; }
+
+        public ViewEventArgs(string userToFilter, string textToFilter,
+                            DateTime minDateTimeToFilter, DateTime maxDateTimeToFilter,
+                            string styleMessage,
+                            bool filterByMinDate, bool filterByMaxDate) {
+            UserToFilter = userToFilter;
+            TextToFilter = textToFilter;
+            MinDateTimeToFilter = minDateTimeToFilter;
+            MaxDateTimeToFilter = maxDateTimeToFilter;
+            StyleMessage = styleMessage;
+            FilterByMinDateChecked = filterByMinDate;
+            FilterByMaxDateChecked = filterByMaxDate;
+        }
     }
-    // Currently, the interface only contains the method to set the controller to which
-    // it is tied. The rest of the view related code is implemented in the form.
+
     public interface IView {
 
         event ViewHandler<IView> changed;

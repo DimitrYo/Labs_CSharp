@@ -1,4 +1,5 @@
 ﻿using System;
+using IMS.SMS.GUI;
 
 namespace IMS.SMS.Filter.GUI {
     partial class SmsFilter {
@@ -26,7 +27,7 @@ namespace IMS.SMS.Filter.GUI {
         /// </summary>
         private void InitializeComponent() {
             this.FormattingComboBox = new System.Windows.Forms.ComboBox();
-            this.MessageBox = new System.Windows.Forms.RichTextBox();
+            this.SmsMessageBox = new System.Windows.Forms.RichTextBox();
             this.startButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.userComboBox = new System.Windows.Forms.ComboBox();
@@ -56,17 +57,16 @@ namespace IMS.SMS.Filter.GUI {
             this.FormattingComboBox.Name = "FormattingComboBox";
             this.FormattingComboBox.Size = new System.Drawing.Size(173, 21);
             this.FormattingComboBox.TabIndex = 3;
-            this.FormattingComboBox.Text = "Select Formatting";
             this.FormattingComboBox.SelectedIndexChanged += new System.EventHandler(this.FormattingComboBox_SelectedIndexChanged);
             // 
-            // MessageBox
+            // SmsMessageBox
             // 
-            this.MessageBox.Location = new System.Drawing.Point(30, 133);
-            this.MessageBox.Name = "MessageBox";
-            this.MessageBox.ReadOnly = true;
-            this.MessageBox.Size = new System.Drawing.Size(620, 429);
-            this.MessageBox.TabIndex = 6;
-            this.MessageBox.Text = "";
+            this.SmsMessageBox.Location = new System.Drawing.Point(30, 133);
+            this.SmsMessageBox.Name = "SmsMessageBox";
+            this.SmsMessageBox.ReadOnly = true;
+            this.SmsMessageBox.Size = new System.Drawing.Size(620, 429);
+            this.SmsMessageBox.TabIndex = 6;
+            this.SmsMessageBox.Text = "";
             // 
             // startButton
             // 
@@ -90,13 +90,22 @@ namespace IMS.SMS.Filter.GUI {
             // 
             // userComboBox
             // 
+            this.userComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.userComboBox.FormattingEnabled = true;
+            this.userComboBox.Items.AddRange(new object[] {
+            "DRYV",
+            "SAN",
+            "KUM",
+            "DOM",
+            "MEM",
+            "REM",
+            "GAP"});
             this.userComboBox.Location = new System.Drawing.Point(3, 3);
             this.userComboBox.Name = "userComboBox";
             this.userComboBox.Size = new System.Drawing.Size(173, 21);
             this.userComboBox.TabIndex = 4;
             this.userComboBox.Text = "Select User";
-            //this.userComboBox.SelectedIndexChanged += new System.EventHandler(this.userComboBox_SelectedIndexChanged);
+            this.userComboBox.TextChanged += new System.EventHandler(this.userComboBox_SelectedIndexChanged);
             // 
             // searchTextBox
             // 
@@ -104,7 +113,7 @@ namespace IMS.SMS.Filter.GUI {
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(173, 20);
             this.searchTextBox.TabIndex = 5;
-            //this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
             // dateTimePickerMin
             // 
@@ -115,7 +124,7 @@ namespace IMS.SMS.Filter.GUI {
             this.dateTimePickerMin.ShowUpDown = true;
             this.dateTimePickerMin.Size = new System.Drawing.Size(173, 20);
             this.dateTimePickerMin.TabIndex = 6;
-            //this.dateTimePickerMin.ValueChanged += new System.EventHandler(this.dateTimePickerMin_ValueChanged);
+            this.dateTimePickerMin.ValueChanged += new System.EventHandler(this.dateTimePickerMin_ValueChanged);
             // 
             // dateTimePickerMax
             // 
@@ -126,8 +135,7 @@ namespace IMS.SMS.Filter.GUI {
             this.dateTimePickerMax.ShowUpDown = true;
             this.dateTimePickerMax.Size = new System.Drawing.Size(173, 20);
             this.dateTimePickerMax.TabIndex = 7;
-            this.dateTimePickerMax.Value = new System.DateTime(2018, 10, 2, 15, 21, 18, 270);
-            //this.dateTimePickerMax.ValueChanged += new System.EventHandler(this.dateTimePickerMax_ValueChanged);
+            this.dateTimePickerMax.ValueChanged += new System.EventHandler(this.dateTimePickerMax_ValueChanged);
             // 
             // flowLayoutPanel2
             // 
@@ -177,7 +185,7 @@ namespace IMS.SMS.Filter.GUI {
             this.ClientSize = new System.Drawing.Size(677, 582);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.MessageBox);
+            this.Controls.Add(this.SmsMessageBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -185,6 +193,7 @@ namespace IMS.SMS.Filter.GUI {
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SmsFilter";
+            this.Load += new System.EventHandler(this.SmsFilter_Load);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -196,7 +205,7 @@ namespace IMS.SMS.Filter.GUI {
         #endregion
 
         private System.Windows.Forms.ComboBox FormattingComboBox;
-        private System.Windows.Forms.RichTextBox MessageBox;
+        private System.Windows.Forms.RichTextBox SmsMessageBox;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.ComboBox userComboBox;

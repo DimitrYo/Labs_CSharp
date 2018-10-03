@@ -13,12 +13,12 @@ namespace IMS.SMS.Filter.GUI {
         IView view;
         IModel model;
 
-        public Controllet(IView v, IModel m) {
+        public Controllet(IView v,IModel m) {
             view = v;
             model = m;
             view.setController(this);
             model.attachIModelObserver((IModelObserver)view);
-            //view.changed += new ViewHandler<IView>(this.view_changed);
+            view.changed += new ViewHandler<IView>(this.viewChanged);
         }
 
         public void StartTimer() {
@@ -27,6 +27,9 @@ namespace IMS.SMS.Filter.GUI {
 
         public void StopTimer() {
             model.StopTimer();
+        }
+        public void viewChanged(IView v, ViewEventArgs e) {
+            model.viewChanged(e);
         }
     }
 }
