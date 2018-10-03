@@ -5,21 +5,22 @@ using IMS.SMS.GUI;
 
 namespace IMS.SMS.Filter.GUI {
     public class SmsStorage : IModel {
+        public event ModelHandler<SmsStorage> changed;
+        private object LockMsgTextList;
         public event Func<Message, Message> FormatterMsgEvent;
         private SmsProvider SMSProvider;
         private List<Message> MsgTextList;
-        private string UserToFilter { get; set; }
-        private string TextToFilter { get; set; }
-        private DateTime MinDateTimeToFilter { get; set; }
-        private DateTime MaxDateTimeToFilter { get; set; }
-        public string StyleMessage { get; private set; }
-        public bool FilterByDateChecked { get; private set; }
-        public bool FilterByMaxDateChecked { get; private set; }
-        public bool FilterByMinDateChecked { get; private set; }
 
-        public event ModelHandler<SmsStorage> changed;
+        public string UserToFilter { get; set; }
+        public string TextToFilter { get; set; }
+        public DateTime MinDateTimeToFilter { get; set; }
+        public DateTime MaxDateTimeToFilter { get; set; }
+        public string StyleMessage { get; set; }
+        public bool FilterByMaxDateChecked { get; set; }
+        public bool FilterByMinDateChecked { get;  set; }
+        public List<Message> MsgTextListGet { get => MsgTextList; }
 
-        private object LockMsgTextList;
+
 
         public SmsStorage() {
             SMSProvider = new SmsProvider();
@@ -67,7 +68,7 @@ namespace IMS.SMS.Filter.GUI {
             lock (LockMsgTextList) {
                 temp = new List<Message>(MsgTextList);
             }
-            if (temp != null ) {
+            if (temp != null) {
                 var messages = FilterByUser(temp);
                 messages = FilterByMinDateTime(messages);
                 messages = FilterByMaxDateTime(messages);
@@ -78,7 +79,7 @@ namespace IMS.SMS.Filter.GUI {
 
         }
 
-        private void StyleChanged() {
+        public void StyleChanged() {
             switch (StyleMessage) {
 
                 case "None":
@@ -113,28 +114,28 @@ namespace IMS.SMS.Filter.GUI {
             FormatterMsgEvent += handler;
         }
 
-        private IEnumerable<Message> FilterByMaxDateTime(IEnumerable<Message> messages) {
+        public IEnumerable<Message> FilterByMaxDateTime(IEnumerable<Message> messages) {
             if (MaxDateTimeToFilter != null && FilterByMaxDateChecked) {
                 messages = messages.Where(m => m.ReceivingTime <= MaxDateTimeToFilter);
             }
             return messages;
         }
 
-        private IEnumerable<Message> FilterByMinDateTime(IEnumerable<Message> messages) {
+        public IEnumerable<Message> FilterByMinDateTime(IEnumerable<Message> messages) {
             if (MinDateTimeToFilter != null && FilterByMinDateChecked) {
                 messages = messages.Where(m => m.ReceivingTime >= MinDateTimeToFilter);
             }
             return messages;
         }
 
-        private IEnumerable<Message> FilterByUser(IEnumerable<Message> messages) {
+        public IEnumerable<Message> FilterByUser(IEnumerable<Message> messages) {
             if (UserToFilter != null) {
                 messages = messages.Where(m => m.User.Equals(UserToFilter));
             }
             return messages;
         }
 
-        private IEnumerable<Message> FilterByContainedString(IEnumerable<Message> messages) {
+        public IEnumerable<Message> FilterByContainedString(IEnumerable<Message> messages) {
             if (TextToFilter != null) {
                 messages = messages.Where(s => s.ToString().Contains(TextToFilter));
             }

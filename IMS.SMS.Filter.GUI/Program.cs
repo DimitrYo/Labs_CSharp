@@ -14,8 +14,8 @@ namespace IMS.SMS.Filter.GUI {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var view = new SmsFilter();
-            IModel mdl = new SmsStorage();
-            IController cnt = new Controllet(view, mdl);
+            var mdl = new SmsStorage();
+            var cnt = new Controllet(view, mdl);
             cnt.StartTimer();
 
             Application.Run(view);

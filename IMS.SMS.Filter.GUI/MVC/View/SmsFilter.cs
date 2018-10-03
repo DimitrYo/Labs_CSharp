@@ -16,7 +16,6 @@ namespace IMS.SMS.Filter.GUI {
             this.dateTimePickerMin.Value = DateTime.Now;
             this.dateTimePickerMax.Value = this.dateTimePickerMin.Value + TimeSpan.FromSeconds(5);
             this.FormattingComboBox.SelectedIndex = 0;
-            //this.userComboBox.Items.AddRange(Contacts.ContactsList.ToArray());
         }
 
         IController controller;
