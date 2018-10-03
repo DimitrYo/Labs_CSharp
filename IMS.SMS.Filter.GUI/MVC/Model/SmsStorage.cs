@@ -1,34 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IMS.SMS.GUI;
 
 namespace IMS.SMS.Filter.GUI {
-    public delegate void ModelHandler<IModel>(IModel sender, ModelEventArgs e);
-
-    public class ModelEventArgs : EventArgs {
-        public List<Message> MsgTextList { get; }
-
-        public ModelEventArgs(List<Message> messages) {
-            MsgTextList = messages;
-        }
-    }
-
-    public interface IModelObserver {
-        void MessageBoxUpdate(IModel model, ModelEventArgs e);
-    }
-
-    public interface IModel {
-
-        void OnSmsReceivedMsg(Message msg);
-        void StartTimer();
-        void StopTimer();
-        void attachIModelObserver(IModelObserver view);
-        void viewChanged(ViewEventArgs e);
-    }
-
     public class SmsStorage : IModel {
         public event Func<Message, Message> FormatterMsgEvent;
         private SmsProvider SMSProvider;

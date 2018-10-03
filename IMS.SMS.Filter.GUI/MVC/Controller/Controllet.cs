@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IMS.SMS.Filter.GUI {
-    public interface IController {
-        void StartTimer();
-        void StopTimer();
-    }
+﻿namespace IMS.SMS.Filter.GUI {
     public class Controllet : IController {
         IView view;
         IModel model;

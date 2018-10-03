@@ -105,7 +105,7 @@ namespace IMS.SMS.Filter.GUI {
             this.userComboBox.Size = new System.Drawing.Size(173, 21);
             this.userComboBox.TabIndex = 4;
             this.userComboBox.Text = "Select User";
-            this.userComboBox.TextChanged += new System.EventHandler(this.userComboBox_SelectedIndexChanged);
+            this.userComboBox.TextChanged += new System.EventHandler(this.userComboBox_TextChanged);
             // 
             // searchTextBox
             // 
