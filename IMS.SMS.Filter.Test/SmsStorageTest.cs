@@ -32,9 +32,9 @@ namespace IMS.SMS.Filter.GUI.Test {
             mdl.StyleMessage = "Start with DateTime";
             mdl.StyleChanged();
             //-- Act;
-            mdl.StartTimer();
+            mdl.Start();
             Thread.Sleep(5000);
-            mdl.StopTimer();
+            mdl.Stop();
             var actual = mdl.MsgTextListGet.Count;
 
             //-- Assert
@@ -258,7 +258,6 @@ namespace IMS.SMS.Filter.GUI.Test {
         [TestMethod]
         public void TestViewChanged() {
             //-- Arrange
-            var expected = true;
             var timeMin = DateTime.Now;
             var timeMax = timeMin + TimeSpan.FromSeconds(5);
             var mdl = new SmsStorage();

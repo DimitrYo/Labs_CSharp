@@ -18,11 +18,11 @@ namespace IMS.SMS.GUI {
             GenerateMsgTimer = new Timer(OnSmsGenerated, null, 0, 1000);
         }
 
-        public void ThreadingTimerStartMsg() {
+        public void Start() {
             GenerateMsgTimer = new Timer(OnSmsGeneratedMsg, null, 0, 1000);
         }
 
-        public void ThreadingTimerStop() {
+        public void Stop() {
             GenerateMsgTimer.Change(Timeout.Infinite, Timeout.Infinite);
         }
 

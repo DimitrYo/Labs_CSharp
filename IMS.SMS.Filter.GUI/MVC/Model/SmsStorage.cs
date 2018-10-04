@@ -37,12 +37,12 @@ namespace IMS.SMS.Filter.GUI {
             UpdateView();
         }
 
-        public void StartTimer() {
-            SMSProvider.ThreadingTimerStartMsg();
+        public void Start() {
+            SMSProvider.Start();
         }
 
-        public void StopTimer() {
-            SMSProvider.ThreadingTimerStop();
+        public void Stop() {
+            SMSProvider.Stop();
         }
 
         public void AttachIModelObserver(IModelObserver imo) {

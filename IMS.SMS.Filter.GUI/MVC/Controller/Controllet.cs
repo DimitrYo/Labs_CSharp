@@ -9,6 +9,7 @@
             view.setController(this);
             model.AttachIModelObserver((IModelObserver)view);
             view.changed += new ViewHandler<IView>(this.viewChanged);
+            StartTimer();
         }
 
         public void StartTimer() {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace IMS.SMS.Filter.GUI {
+namespace IMS.SMS.Charger.GUI {
     static class Program {
         /// <summary>
         /// The main entry point for the application.
@@ -13,11 +13,7 @@ namespace IMS.SMS.Filter.GUI {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var view = new SmsFilter();
-            var mdl = new SmsStorage();
-            var cnt = new Controllet(view, mdl);
-
-            Application.Run(view);
+            Application.Run(new Charger());
         }
     }
 }

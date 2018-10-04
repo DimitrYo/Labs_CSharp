@@ -8,8 +8,8 @@ namespace IMS.SMS.Filter.GUI {
     public interface IModel {
 
         void OnSmsReceivedMsg(Message msg);
-        void StartTimer();
-        void StopTimer();
+        void Start();
+        void Stop();
         void AttachIModelObserver(IModelObserver view);
         void ViewChanged(ViewEventArgs e);
     }
