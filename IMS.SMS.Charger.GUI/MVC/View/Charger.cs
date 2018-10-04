@@ -28,11 +28,11 @@ namespace IMS.SMS.Charger.GUI {
         }
 
         private void startButton_Click(object sender, EventArgs e) {
-            filterSmsController.StartTimer();
+            filterSmsController.Start();
         }
 
         private void stopButton_Click(object sender, EventArgs e) {
-            filterSmsController.StopTimer();
+            filterSmsController.Stop();
         }
 
         public void MessageBoxUpdate(IModel m, ModelEventArgs e) {
@@ -89,10 +89,6 @@ namespace IMS.SMS.Charger.GUI {
                 //var messages = e.MsgTextList.AsEnumerable().Select(el => el.ToString()).ToArray();
                 // TODO
             }
-        }
-
-        public void BatteryProgressbarUpdate(IBatteryModel model, BatteryModelEventArgs e) {
-            throw new NotImplementedException();
         }
     }
 }

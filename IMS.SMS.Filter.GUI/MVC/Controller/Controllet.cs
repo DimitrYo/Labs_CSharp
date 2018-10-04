@@ -9,14 +9,14 @@
             view.setfilterSmsController(this);
             model.AttachIModelObserver((IModelObserver)view);
             view.changed += new ViewHandler<IView>(this.viewChanged);
-            StartTimer();
+            Start();
         }
 
-        public void StartTimer() {
+        public void Start() {
             model.Start();
         }
 
-        public void StopTimer() {
+        public void Stop() {
             model.Stop();
         }
         public void viewChanged(IView v, ViewEventArgs e) {

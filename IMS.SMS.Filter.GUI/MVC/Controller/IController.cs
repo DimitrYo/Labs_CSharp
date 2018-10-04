@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IMS.SMS.Filter.GUI {
     public interface IController {
-        void StartTimer();
-        void StopTimer();
+        void Start();
+        void Stop();
     }
 }

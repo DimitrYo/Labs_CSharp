@@ -25,16 +25,17 @@ namespace IMS.SMS.Charger.GUI {
             view.setfilterSmsController(this);
             model.AttachIModelObserver((IModelBatteryObserver)view);
             view.changedProgressBar += new ViewBatteryHandler<IBatteryView>(this.viewChanged);
-            StartTimer();
+            Start();
         }
 
-        public void StartTimer() {
+        public void Start() {
             model.Start();
         }
 
-        public void StopTimer() {
+        public void Stop() {
             model.Stop();
         }
+
         public void viewChanged(IBatteryView v, ViewBatteryEventArgs e) {
             model.ViewChanged(e);
         }

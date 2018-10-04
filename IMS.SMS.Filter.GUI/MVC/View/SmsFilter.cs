@@ -25,11 +25,11 @@ namespace IMS.SMS.Filter.GUI {
         }
 
         private void startButton_Click(object sender, EventArgs e) {
-            controller.StartTimer();
+            controller.Start();
         }
 
         private void stopButton_Click(object sender, EventArgs e) {
-            controller.StopTimer();
+            controller.Stop();
         }
 
         public void MessageBoxUpdate(IModel m, ModelEventArgs e) {
