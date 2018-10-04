@@ -10,7 +10,6 @@ namespace IMS.SMS.Filter.GUI {
         private object LockMsgTextList;
         public event Func<Message, Message> FormatterMsgEvent;
         private SmsProvider SMSProvider;
-        private List<Message> MsgTextList;
 
         public string UserToFilter { get; set; }
         public string TextToFilter { get; set; }
@@ -19,13 +18,11 @@ namespace IMS.SMS.Filter.GUI {
         public string StyleMessage { get; set; }
         public bool FilterByMaxDateChecked { get; set; }
         public bool FilterByMinDateChecked { get;  set; }
-        public List<Message> MsgTextListGet { get => MsgTextList; }
-
-
+        public List<Message> MsgTextListGet { get; }
 
         public SmsStorage() {
             SMSProvider = new SmsProvider();
-            MsgTextList = new List<Message>();
+            MsgTextListGet = new List<Message>();
             SMSProvider.SMSReceivedMsg += OnSmsReceivedMsg;
             LockMsgTextList = new object();
         }
@@ -34,7 +31,7 @@ namespace IMS.SMS.Filter.GUI {
             msg = FormatterMsgEvent?.Invoke(msg) ?? msg;
 
             lock (LockMsgTextList) {
-                MsgTextList.Add(msg);
+                MsgTextListGet.Add(msg);
             }
 
             UpdateView();
@@ -50,6 +47,9 @@ namespace IMS.SMS.Filter.GUI {
 
         public void AttachIModelObserver(IModelObserver imo) {
             changed += new ModelHandler<SmsStorage>(imo.MessageBoxUpdate);
+        }
+        public bool IsSubscribedAttachIModelObserver() {
+            return changed.GetInvocationList().Count() > 0;
         }
 
         public void ViewChanged(ViewEventArgs e) {
@@ -67,7 +67,7 @@ namespace IMS.SMS.Filter.GUI {
         public void UpdateView() {
             List<Message> temp;
             lock (LockMsgTextList) {
-                temp = new List<Message>(MsgTextList);
+                temp = new List<Message>(MsgTextListGet);
             }
             if (temp != null) {
                 var messages = FilterByUser(temp);
@@ -106,7 +106,6 @@ namespace IMS.SMS.Filter.GUI {
             }
         }
 
-        [ExcludeFromCodeCoverage]
         public bool FormatterMsgEventIsSubscribed(Func<Message, Message> d) {
             return FormatterMsgEvent.GetInvocationList().Contains(d);
         }

@@ -29,6 +29,8 @@ namespace IMS.SMS.Filter.GUI.Test {
             var mdl = new SmsStorage();
             var expected = 5;
 
+            mdl.StyleMessage = "Start with DateTime";
+            mdl.StyleChanged();
             //-- Act;
             mdl.StartTimer();
             Thread.Sleep(5000);
@@ -184,9 +186,11 @@ namespace IMS.SMS.Filter.GUI.Test {
 
 
         [TestMethod]
-        public void TestUpdate() {
+        public void TestUpdateView() {
             //-- Arrange
             var mdl = new SmsStorage();
+            var form = new SmsFilter();
+            mdl.AttachIModelObserver((IModelObserver)form);
 
             mdl.TextToFilter = "DRYV";
 
@@ -209,6 +213,46 @@ namespace IMS.SMS.Filter.GUI.Test {
             //-- Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void TestStyleChanged4Times() {
+            //-- Arrange
+            var expected = true;
+            var mdl = new SmsStorage();
+
+            //-- Act;
+            mdl.StyleMessage = "Start with DateTime";
+            mdl.StyleChanged();
+
+            mdl.StyleMessage = "End with DateTime";
+            mdl.StyleChanged();
+
+            mdl.StyleMessage = "Uppercase";
+            mdl.StyleChanged();
+
+            mdl.StyleMessage = "Lowercase";
+            mdl.StyleChanged();
+            var actual = mdl.FormatterMsgEventIsSubscribed(Message.FormatLowerCase);
+
+            //-- Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestAttachIModelObserver() {
+            //-- Arrange
+            var expected = true;
+            var form = new SmsFilter();
+            var mdl = new SmsStorage();
+
+            //-- Act;
+            mdl.AttachIModelObserver((IModelObserver)form);
+            var actual = mdl.IsSubscribedAttachIModelObserver();
+
+            //-- Assert
+            Assert.AreEqual(expected, actual);
+        }
+
 
 
         [TestMethod]
