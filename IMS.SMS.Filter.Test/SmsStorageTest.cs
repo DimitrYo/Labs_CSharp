@@ -13,7 +13,7 @@ namespace IMS.SMS.Filter.GUI.Test {
     [TestClass]
     public class SmsStorageTest {
         [TestMethod]
-        public void TestSmsenerating() {
+        public void TestSmsGenerating() {
             //-- Arrange
             var mdl = new SmsStorage();
             var expected = 5;
@@ -30,7 +30,7 @@ namespace IMS.SMS.Filter.GUI.Test {
 
 
         [TestMethod]
-        public void TestMethod2() {
+        public void AdddingMessages() {
             //-- Arrange
             var expected = 1;
 
