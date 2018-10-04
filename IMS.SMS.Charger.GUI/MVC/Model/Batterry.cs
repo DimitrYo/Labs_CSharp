@@ -16,7 +16,7 @@ namespace IMS.SMS.Charger.GUI {
         public ChargeLevels ChargeLevel { get; set; }
 
         public void AttachIModelObserver(IModelBatteryObserver view) {
-            changed += new BatteryModelHandler<Batterry>(view.BatteryProgressbarUpdate);
+            changed += new BatteryModelHandler<Batterry>(view.BatteryProgressBarUpdate);
         }
 
         public void OnBatteryLevelChange(int level) {
