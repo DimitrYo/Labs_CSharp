@@ -10,6 +10,6 @@ namespace IMS.SMS.Filter.GUI {
     public interface IView {
 
         event ViewHandler<IView> changed;
-        void setController(IController cont);
+        void setfilterSmsController(IController cont);
     }
 }

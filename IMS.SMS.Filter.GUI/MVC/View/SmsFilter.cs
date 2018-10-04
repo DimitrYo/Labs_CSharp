@@ -20,7 +20,7 @@ namespace IMS.SMS.Filter.GUI {
 
         IController controller;
         public event ViewHandler<IView> changed;
-        public void setController(IController cont) {
+        public void setfilterSmsController(IController cont) {
             controller = cont;
         }
 

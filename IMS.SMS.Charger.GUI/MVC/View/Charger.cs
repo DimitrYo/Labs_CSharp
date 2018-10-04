@@ -7,7 +7,7 @@ using System.Linq;
 using IMS.SMS.Filter.GUI;
 
 namespace IMS.SMS.Charger.GUI {
-    public partial class Charger : Form, IView, IModelObserver, IModelBatteryObserver {
+    public partial class Charger : Form, IView, IModelObserver, IBatteryView, IModelBatteryObserver {
         public Charger() {
             InitializeComponent();
             SetuoInitialValues();
@@ -19,18 +19,20 @@ namespace IMS.SMS.Charger.GUI {
             this.formattingComboBox.SelectedIndex = 0;
         }
 
-        IController controller;
+        IController filterSmsController;
         public event ViewHandler<IView> changed;
-        public void setController(IController cont) {
-            controller = cont;
+        public event ViewBatteryHandler<IBatteryView> changedProgressBar;
+
+        public void setfilterSmsController(IController cont) {
+            filterSmsController = cont;
         }
 
         private void startButton_Click(object sender, EventArgs e) {
-            controller.StartTimer();
+            filterSmsController.StartTimer();
         }
 
         private void stopButton_Click(object sender, EventArgs e) {
-            controller.StopTimer();
+            filterSmsController.StopTimer();
         }
 
         public void MessageBoxUpdate(IModel m, ModelEventArgs e) {
@@ -82,11 +84,15 @@ namespace IMS.SMS.Charger.GUI {
 
         public void BatteryProgressBarUpdate(IBatteryModel model, BatteryModelEventArgs e) {
             if (InvokeRequired) {
-                batteryProgresBar?.BeginInvoke(new Action<IBatteryModel, BatteryModelEventArgs>(BatteryProgressBarUpdate), m, e);
+                batteryProgresBar?.BeginInvoke(new Action<IBatteryModel, BatteryModelEventArgs>(BatteryProgressBarUpdate), model, e);
             } else {
                 //var messages = e.MsgTextList.AsEnumerable().Select(el => el.ToString()).ToArray();
                 // TODO
             }
+        }
+
+        public void BatteryProgressbarUpdate(IBatteryModel model, BatteryModelEventArgs e) {
+            throw new NotImplementedException();
         }
     }
 }

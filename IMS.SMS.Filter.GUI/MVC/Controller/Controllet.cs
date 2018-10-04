@@ -6,18 +6,18 @@
         public Controllet(IView v,IModel m) {
             view = v;
             model = m;
-            view.setController(this);
+            view.setfilterSmsController(this);
             model.AttachIModelObserver((IModelObserver)view);
             view.changed += new ViewHandler<IView>(this.viewChanged);
             StartTimer();
         }
 
         public void StartTimer() {
-            model.StartTimer();
+            model.Start();
         }
 
         public void StopTimer() {
-            model.StopTimer();
+            model.Stop();
         }
         public void viewChanged(IView v, ViewEventArgs e) {
             model.ViewChanged(e);

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MVC\Controller\BatteryController.cs" />
     <Compile Include="MVC\Model\Batterry.cs" />
     <Compile Include="MVC\Model\BatteryModelEventArgs.cs" />
     <Compile Include="MVC\Model\IBatteryModel.cs" />
