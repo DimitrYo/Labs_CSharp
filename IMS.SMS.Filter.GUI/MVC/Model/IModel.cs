@@ -10,7 +10,7 @@ namespace IMS.SMS.Filter.GUI {
         void OnSmsReceivedMsg(Message msg);
         void StartTimer();
         void StopTimer();
-        void attachIModelObserver(IModelObserver view);
-        void viewChanged(ViewEventArgs e);
+        void AttachIModelObserver(IModelObserver view);
+        void ViewChanged(ViewEventArgs e);
     }
 }

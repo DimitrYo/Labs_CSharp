@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using IMS.SMS.GUI;
 
@@ -47,11 +48,11 @@ namespace IMS.SMS.Filter.GUI {
             SMSProvider.ThreadingTimerStop();
         }
 
-        public void attachIModelObserver(IModelObserver imo) {
+        public void AttachIModelObserver(IModelObserver imo) {
             changed += new ModelHandler<SmsStorage>(imo.MessageBoxUpdate);
         }
 
-        public void viewChanged(ViewEventArgs e) {
+        public void ViewChanged(ViewEventArgs e) {
             UserToFilter = e.UserToFilter;
             TextToFilter = e.TextToFilter;
             MinDateTimeToFilter = e.MinDateTimeToFilter;
@@ -63,7 +64,7 @@ namespace IMS.SMS.Filter.GUI {
             UpdateView();
         }
 
-        private void UpdateView() {
+        public void UpdateView() {
             List<Message> temp;
             lock (LockMsgTextList) {
                 temp = new List<Message>(MsgTextList);
@@ -72,7 +73,7 @@ namespace IMS.SMS.Filter.GUI {
                 var messages = FilterByUser(temp);
                 messages = FilterByMinDateTime(messages);
                 messages = FilterByMaxDateTime(messages);
-                messages = FilterByContainedString(messages);
+                messages = FilterByText(messages);
                 StyleChanged();
                 changed?.BeginInvoke(this, new ModelEventArgs((List<Message>)messages.ToList()), null, null);
             }
@@ -105,6 +106,11 @@ namespace IMS.SMS.Filter.GUI {
             }
         }
 
+        [ExcludeFromCodeCoverage]
+        public bool FormatterMsgEventIsSubscribed(Func<Message, Message> d) {
+            return FormatterMsgEvent.GetInvocationList().Contains(d);
+        }
+
         public void AttachOnlyOneHandler(Func<Message, Message> handler) {
             if (FormatterMsgEvent != null) {
                 foreach (var del in FormatterMsgEvent.GetInvocationList()) {
@@ -135,7 +141,7 @@ namespace IMS.SMS.Filter.GUI {
             return messages;
         }
 
-        public IEnumerable<Message> FilterByContainedString(IEnumerable<Message> messages) {
+        public IEnumerable<Message> FilterByText(IEnumerable<Message> messages) {
             if (TextToFilter != null) {
                 messages = messages.Where(s => s.ToString().Contains(TextToFilter));
             }

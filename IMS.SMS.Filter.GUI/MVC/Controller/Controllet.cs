@@ -7,7 +7,7 @@
             view = v;
             model = m;
             view.setController(this);
-            model.attachIModelObserver((IModelObserver)view);
+            model.AttachIModelObserver((IModelObserver)view);
             view.changed += new ViewHandler<IView>(this.viewChanged);
         }
 
@@ -19,7 +19,7 @@
             model.StopTimer();
         }
         public void viewChanged(IView v, ViewEventArgs e) {
-            model.viewChanged(e);
+            model.ViewChanged(e);
         }
     }
 }
