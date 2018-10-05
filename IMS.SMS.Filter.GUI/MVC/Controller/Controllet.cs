@@ -1,14 +1,14 @@
 ﻿namespace IMS.SMS.Filter.GUI {
-    public class Controllet : IController {
+    public class SmsController : IController {
         IView view;
         IModel model;
 
-        public Controllet(IView v,IModel m) {
+        public SmsController(IView v,IModel m) {
             view = v;
             model = m;
             view.setfilterSmsController(this);
             model.AttachIModelObserver((IModelObserver)view);
-            view.changed += new ViewHandler<IView>(this.viewChanged);
+            view.Changed += new ViewSmsHandler<IView>(this.viewChanged);
             Start();
         }
 

@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace IMS.SMS.Filter.GUI {
 
-    public delegate void ViewHandler<IView>(IView sender, ViewEventArgs e);
+    public delegate void ViewSmsHandler<IView>(IView sender, ViewEventArgs e);
 
     public interface IView {
 
-        event ViewHandler<IView> changed;
+        event ViewSmsHandler<IView> Changed;
         void setfilterSmsController(IController cont);
     }
 }

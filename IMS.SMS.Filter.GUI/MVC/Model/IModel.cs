@@ -12,5 +12,6 @@ namespace IMS.SMS.Filter.GUI {
         void Stop();
         void AttachIModelObserver(IModelObserver view);
         void ViewChanged(ViewEventArgs e);
+        bool IsSubscribedAttachIModelObserver();
     }
 }

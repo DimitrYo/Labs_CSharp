@@ -5,6 +5,7 @@ using IMS.SMS.GUI;
 using Message = IMS.SMS.GUI.Message;
 using System.Linq;
 using IMS.SMS.Filter.GUI;
+using System.Drawing;
 
 namespace IMS.SMS.Charger.GUI {
     public partial class Charger : Form, IView, IModelObserver, IBatteryView, IModelBatteryObserver {
@@ -17,14 +18,24 @@ namespace IMS.SMS.Charger.GUI {
             this.dateTimePickerMin.Value = DateTime.Now;
             this.dateTimePickerMax.Value = this.dateTimePickerMin.Value + TimeSpan.FromSeconds(5);
             this.formattingComboBox.SelectedIndex = 0;
+            this.batteryProgresBar.Style = ProgressBarStyle.Continuous;
+            this.IsCharging = false;
         }
 
         IController filterSmsController;
-        public event ViewHandler<IView> changed;
-        public event ViewBatteryHandler<IBatteryView> changedProgressBar;
+        IController chargerController;
+
+        public bool IsCharging { get; private set; }
+
+        public event ViewSmsHandler<IView> Changed;
+        public event ViewBatteryHandler<IBatteryView> ChangedProgressBar;
 
         public void setfilterSmsController(IController cont) {
             filterSmsController = cont;
+        }
+
+        public void setChargeController(BatteryController cont) {
+            chargerController = cont;
         }
 
         private void startButton_Click(object sender, EventArgs e) {
@@ -70,12 +81,25 @@ namespace IMS.SMS.Charger.GUI {
         }
 
         public new void Update() {
+            UpdateSmsStorage();
+            UpdateBattery();
+        }
+
+        private void UpdateBattery() {
+            var batteryArg = new ViewBatteryEventArgs {
+                IsCharging = this.IsCharging
+            };
+
+            ChangedProgressBar?.BeginInvoke(this, batteryArg, null, null);
+        }
+
+        private void UpdateSmsStorage() {
             var viewArg = new ViewEventArgs(userComboBox?.SelectedItem?.ToString(), searchTextBox.Text,
                 dateTimePickerMin.Value, dateTimePickerMax.Value,
                 formattingComboBox?.SelectedItem?.ToString(),
                 dateTimePickerMin.Checked, dateTimePickerMax.Checked);
 
-            changed?.Invoke(this, viewArg);
+            Changed?.Invoke(this, viewArg);
         }
 
         private void userComboBox_TextChanged(object sender, EventArgs e) {
@@ -86,9 +110,11 @@ namespace IMS.SMS.Charger.GUI {
             if (InvokeRequired) {
                 batteryProgresBar?.BeginInvoke(new Action<IBatteryModel, BatteryModelEventArgs>(BatteryProgressBarUpdate), model, e);
             } else {
-                //var messages = e.MsgTextList.AsEnumerable().Select(el => el.ToString()).ToArray();
-                // TODO
+                batteryProgresBar.Value = e.ChargeLevelInt;
+                batteryProgresBar.Refresh();
             }
         }
+
+
     }
 }

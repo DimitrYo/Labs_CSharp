@@ -6,33 +6,97 @@ using System.Threading.Tasks;
 
 namespace IMS.SMS.Charger.GUI {
 
-    public enum ChargeLevels { Low, Medium, High };
-    public class Batterry : IBatteryModel {
+    public class Battery : IBatteryModel, IDisposable {
 
-        public event BatteryModelHandler<Batterry> changed;
+        public event BatteryModelHandler<Battery> Changed;
 
-        public int ChargeLevelInt { get; set; }
+        public int ChargeLevel { get; set; }
         public int ChargeStatus { get; set; }
-        public ChargeLevels ChargeLevel { get; set; }
+        public bool IsCharging { get; set; }
+        public BatteryMethod BatteryMethod { get; set; }
+        public IBatteryChange BatteryConsuming { get; set; }
+        public IBatteryChange BatteryCharger { get; set; }
 
-        public void AttachIModelObserver(IModelBatteryObserver view) {
-            changed += new BatteryModelHandler<Batterry>(view.BatteryProgressBarUpdate);
+        private BatteryFactory Factory;
+
+        public object ChargeLevelLock;
+
+        public Battery(BatteryMethod batteryMethod) {
+            this.ChargeLevel = 100;
+            ChargeLevelLock = new object();
+
+            Factory = new BatteryFactory();
+            this.BatteryMethod = batteryMethod;
+
+            this.BatteryConsuming = Factory.CreateBatteryChange(this.BatteryMethod);
+            BatteryConsuming.BatteryChange += OnBatteryConsuming;
         }
 
-        public void OnBatteryLevelChange(int level) {
-            throw new NotImplementedException();
+        public void AttachIModelObserver(IModelBatteryObserver view) {
+            Changed += new BatteryModelHandler<Battery>(view.BatteryProgressBarUpdate);
+        }
+
+        public void OnBatteryConsuming(int level) {
+            lock (ChargeLevelLock) {
+                ChargeLevel = Math.Max(ChargeLevel - level, 0);
+            }
+            UpdateView();
+        }
+
+        public void OnBatteryCharger(int level) {
+            lock (ChargeLevelLock) {
+                ChargeLevel = Math.Min(ChargeLevel + level, 0);
+            }
+            UpdateView();
         }
 
         public void Start() {
-            throw new NotImplementedException();
+            BatteryConsuming.Start();
         }
 
         public void Stop() {
-            throw new NotImplementedException();
+            BatteryConsuming.Stop();
+        }
+
+        public void UpdateView() {
+            var arg = new BatteryModelEventArgs {
+                ChargeLevelInt = this.ChargeLevel,
+                IsCharging = this.IsCharging,
+            };
+            Changed?.BeginInvoke(this, arg, null, null);
         }
 
         public void ViewChanged(ViewBatteryEventArgs e) {
-            throw new NotImplementedException();
+            if (e.IsCharging) {
+                AttachCharger();
+            } else {
+                if (BatteryCharger != null) {
+                    DettachCharger();
+                }
+            }
+        }
+
+        public void Dispose() {
+            if (BatteryConsuming != null) {
+                BatteryConsuming.Dispose();
+            }
+        }
+
+        public bool IsSubscribedAttachIModelObserver() {
+            return Changed.GetInvocationList().Count() > 0;
+        }
+
+        public void AttachCharger() {
+            BatteryCharger = Factory.CreateBatteryChange(BatteryMethod);
+            BatteryCharger.BatteryChangeValue = 10;
+            BatteryCharger.BatteryChange += OnBatteryCharger;
+            BatteryCharger.Start();
+        }
+
+        public void DettachCharger() {
+            BatteryCharger.Stop();
+            BatteryCharger.BatteryChange -= OnBatteryCharger;
+            BatteryCharger.Dispose();
         }
     }
 }

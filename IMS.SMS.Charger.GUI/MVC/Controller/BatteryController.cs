@@ -10,9 +10,9 @@ namespace IMS.SMS.Charger.GUI {
     public delegate void ViewBatteryHandler<IView>(IView sender, ViewBatteryEventArgs e);
 
     public interface IBatteryView {
+        event ViewBatteryHandler<IBatteryView> ChangedProgressBar;
 
-        event ViewBatteryHandler<IBatteryView> changedProgressBar;
-        void setfilterSmsController(IController cont); 
+        void setChargeController(BatteryController batteryController);
     }
 
     public class BatteryController : IController {
@@ -22,9 +22,9 @@ namespace IMS.SMS.Charger.GUI {
         public BatteryController(IBatteryView v, IBatteryModel m) {
             view = v;
             model = m;
-            view.setfilterSmsController(this);
+            view.setChargeController(this);
             model.AttachIModelObserver((IModelBatteryObserver)view);
-            view.changedProgressBar += new ViewBatteryHandler<IBatteryView>(this.viewChanged);
+            view.ChangedProgressBar += new ViewBatteryHandler<IBatteryView>(this.viewChanged);
             Start();
         }
 

@@ -6,7 +6,7 @@ using IMS.SMS.GUI;
 
 namespace IMS.SMS.Filter.GUI {
     public class SmsStorage : IModel {
-        public event ModelHandler<SmsStorage> changed;
+        public event ModelHandler<SmsStorage> Changed;
         private object LockMsgTextList;
         public event Func<Message, Message> FormatterMsgEvent;
         private SmsProvider SMSProvider;
@@ -46,10 +46,10 @@ namespace IMS.SMS.Filter.GUI {
         }
 
         public void AttachIModelObserver(IModelObserver imo) {
-            changed += new ModelHandler<SmsStorage>(imo.MessageBoxUpdate);
+            Changed += new ModelHandler<SmsStorage>(imo.MessageBoxUpdate);
         }
         public bool IsSubscribedAttachIModelObserver() {
-            return changed.GetInvocationList().Count() > 0;
+            return Changed.GetInvocationList().Count() > 0;
         }
 
         public void ViewChanged(ViewEventArgs e) {
@@ -75,7 +75,7 @@ namespace IMS.SMS.Filter.GUI {
                 messages = FilterByMaxDateTime(messages);
                 messages = FilterByText(messages);
                 StyleChanged();
-                changed?.BeginInvoke(this, new ModelEventArgs((List<Message>)messages.ToList()), null, null);
+                Changed?.BeginInvoke(this, new ModelEventArgs((List<Message>)messages.ToList()), null, null);
             }
 
         }

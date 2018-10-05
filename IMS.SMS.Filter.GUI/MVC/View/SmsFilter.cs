@@ -19,7 +19,7 @@ namespace IMS.SMS.Filter.GUI {
         }
 
         IController controller;
-        public event ViewHandler<IView> changed;
+        public event ViewSmsHandler<IView> Changed;
         public void setfilterSmsController(IController cont) {
             controller = cont;
         }
@@ -72,7 +72,7 @@ namespace IMS.SMS.Filter.GUI {
                 FormattingComboBox?.SelectedItem?.ToString(),
                 dateTimePickerMin.Checked, dateTimePickerMax.Checked);
 
-            changed?.Invoke(this, viewArg);
+            Changed?.Invoke(this, viewArg);
         }
 
         private void userComboBox_TextChanged(object sender, EventArgs e) {

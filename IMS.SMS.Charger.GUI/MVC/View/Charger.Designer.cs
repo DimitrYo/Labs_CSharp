@@ -35,18 +35,18 @@ namespace IMS.SMS.Charger.GUI {
             this.dateTimePickerMin = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerMax = new System.Windows.Forms.DateTimePicker();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.chargeButton = new System.Windows.Forms.Button();
+            this.batteryProgresBar = new BatteryProgressBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.batteryProgresBar = new System.Windows.Forms.ProgressBar();
-            this.chargeButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // FormattingComboBox
+            // formattingComboBox
             // 
             this.formattingComboBox.FormattingEnabled = true;
             this.formattingComboBox.Items.AddRange(new object[] {
@@ -56,7 +56,7 @@ namespace IMS.SMS.Charger.GUI {
             "Lowercase",
             "Uppercase"});
             this.formattingComboBox.Location = new System.Drawing.Point(3, 56);
-            this.formattingComboBox.Name = "FormattingComboBox";
+            this.formattingComboBox.Name = "formattingComboBox";
             this.formattingComboBox.Size = new System.Drawing.Size(173, 21);
             this.formattingComboBox.TabIndex = 3;
             this.formattingComboBox.SelectedIndexChanged += new System.EventHandler(this.FormattingComboBox_SelectedIndexChanged);
@@ -152,6 +152,22 @@ namespace IMS.SMS.Charger.GUI {
             this.flowLayoutPanel2.Size = new System.Drawing.Size(387, 89);
             this.flowLayoutPanel2.TabIndex = 5;
             // 
+            // chargeButton
+            // 
+            this.chargeButton.Location = new System.Drawing.Point(3, 56);
+            this.chargeButton.Name = "chargeButton";
+            this.chargeButton.Size = new System.Drawing.Size(173, 23);
+            this.chargeButton.TabIndex = 9;
+            this.chargeButton.Text = "Connect charge";
+            this.chargeButton.UseVisualStyleBackColor = true;
+            // 
+            // batteryProgresBar
+            // 
+            this.batteryProgresBar.Location = new System.Drawing.Point(182, 56);
+            this.batteryProgresBar.Name = "batteryProgresBar";
+            this.batteryProgresBar.Size = new System.Drawing.Size(173, 23);
+            this.batteryProgresBar.TabIndex = 8;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.flowLayoutPanel1);
@@ -181,22 +197,6 @@ namespace IMS.SMS.Charger.GUI {
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "SMS FIltering";
-            // 
-            // progressBar1
-            // 
-            this.batteryProgresBar.Location = new System.Drawing.Point(182, 56);
-            this.batteryProgresBar.Name = "progressBar1";
-            this.batteryProgresBar.Size = new System.Drawing.Size(173, 23);
-            this.batteryProgresBar.TabIndex = 8;
-            // 
-            // Charge
-            // 
-            this.chargeButton.Location = new System.Drawing.Point(3, 56);
-            this.chargeButton.Name = "Charge";
-            this.chargeButton.Size = new System.Drawing.Size(173, 23);
-            this.chargeButton.TabIndex = 9;
-            this.chargeButton.Text = "Connect charge";
-            this.chargeButton.UseVisualStyleBackColor = true;
             // 
             // Charger
             // 
@@ -237,6 +237,6 @@ namespace IMS.SMS.Charger.GUI {
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button chargeButton;
-        private System.Windows.Forms.ProgressBar batteryProgresBar;
+        private BatteryProgressBar batteryProgresBar;
     }
 }

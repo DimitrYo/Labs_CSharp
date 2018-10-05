@@ -13,9 +13,10 @@ namespace IMS.SMS.Filter.GUI {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             var view = new SmsFilter();
             var mdl = new SmsStorage();
-            var cnt = new Controllet(view, mdl);
+            var cnt = new SmsController(view, mdl);
 
             Application.Run(view);
         }
