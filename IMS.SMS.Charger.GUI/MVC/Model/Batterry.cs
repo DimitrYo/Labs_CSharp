@@ -77,9 +77,10 @@ namespace IMS.SMS.Charger.GUI {
         }
 
         public void Dispose() {
-            if (BatteryConsuming != null) {
-                BatteryConsuming.Dispose();
-            }
+
+            BatteryConsuming.BatteryChange -= OnBatteryConsuming;
+            BatteryConsuming?.Dispose();
+            DettachCharger();
         }
 
         public bool IsSubscribedAttachIModelObserver() {

@@ -111,7 +111,7 @@ namespace IMS.SMS.Charger.GUI {
                 batteryProgresBar?.BeginInvoke(new Action<IBatteryModel, BatteryModelEventArgs>(BatteryProgressBarUpdate), model, e);
             } else {
                 batteryProgresBar.Value = e.ChargeLevelInt;
-                batteryProgresBar.Refresh();
+                batteryProgresBar?.Refresh();
             }
         }
 
@@ -124,7 +124,7 @@ namespace IMS.SMS.Charger.GUI {
             };
 
             if (IsCharging) {
-                chargeButton.Text = "Charging";
+                chargeButton.Text = "Disconnect charge";
             } else {
                 chargeButton.Text = "Connect charge";
             }

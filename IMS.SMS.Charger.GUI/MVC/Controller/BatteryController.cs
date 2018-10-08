@@ -15,7 +15,7 @@ namespace IMS.SMS.Charger.GUI {
         void setChargeController(BatteryController batteryController);
     }
 
-    public class BatteryController : IController {
+    public class BatteryController : IController, IDisposable {
         IBatteryModel model;
         IBatteryView view;
 
@@ -26,6 +26,11 @@ namespace IMS.SMS.Charger.GUI {
             model.AttachIModelObserver((IModelBatteryObserver)view);
             view.ChangedProgressBar += new ViewBatteryHandler<IBatteryView>(this.viewChanged);
             Start();
+        }
+
+        public void Dispose() {
+            view.ChangedProgressBar -= new ViewBatteryHandler<IBatteryView>(this.viewChanged);
+            ((IDisposable)model).Dispose();
         }
 
         public void Start() {

@@ -13,10 +13,14 @@ namespace IMS.SMS.Charger.GUI {
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing) {
+
+            ((IDisposable) chargerController).Dispose();
+            batteryProgresBar?.Dispose();
             if (disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
+            
         }
 
         #region Windows Form Designer generated code

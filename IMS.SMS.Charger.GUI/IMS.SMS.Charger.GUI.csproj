@@ -48,6 +48,11 @@
   <ItemGroup>
     <Compile Include="MVC\Controller\BatteryController.cs" />
     <Compile Include="MVC\Model\Batterry.cs" />
+    <Compile Include="MVC\Model\BatteryChangeTask.cs" />
+    <Compile Include="MVC\Model\BatteryChangeThread.cs" />
+    <Compile Include="MVC\Model\BatteryChangeThreadTimer.cs" />
+    <Compile Include="MVC\Model\BatteryFactory.cs" />
+    <Compile Include="MVC\Model\BatteryMethod.cs" />
     <Compile Include="MVC\Model\BatteryModelEventArgs.cs" />
     <Compile Include="MVC\Model\IBatteryChange.cs" />
     <Compile Include="MVC\Model\IBatteryModel.cs" />
