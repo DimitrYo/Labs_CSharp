@@ -77,7 +77,6 @@ namespace IMS.SMS.Charger.GUI {
         }
 
         public void Dispose() {
-
             BatteryConsuming.BatteryChange -= OnBatteryConsuming;
             BatteryConsuming?.Dispose();
             DettachCharger();
@@ -95,8 +94,11 @@ namespace IMS.SMS.Charger.GUI {
         }
 
         public void DettachCharger() {
-            BatteryCharger.BatteryChange -= OnBatteryCharger;
-            BatteryCharger.Dispose();
+            if (BatteryCharger?.HasSubscribers() ?? false) {
+                BatteryCharger.BatteryChange -= OnBatteryCharger;
+            }
+            
+            BatteryCharger?.Dispose();
         }
     }
 }

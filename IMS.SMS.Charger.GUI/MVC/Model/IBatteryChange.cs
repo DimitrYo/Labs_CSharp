@@ -12,5 +12,6 @@ namespace IMS.SMS.Charger.GUI {
         void Start();
         void Stop();
         event Action<int> BatteryChange;
+        bool HasSubscribers();
     }
 }

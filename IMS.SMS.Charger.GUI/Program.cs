@@ -20,8 +20,8 @@ namespace IMS.SMS.Charger.GUI {
             var cnt = new SmsController(view, mdl);
 
             //var bmdl = new Battery(BatteryMethod.ThreadTimer);
-            //var bmdl = new Battery(BatteryMethod.Tasks);
-            var bmdl = new Battery(BatteryMethod.Threads);
+            var bmdl = new Battery(BatteryMethod.Tasks);
+            //var bmdl = new Battery(BatteryMethod.Threads);
             var bcnt = new BatteryController(view,bmdl);
 
             Application.Run(view);

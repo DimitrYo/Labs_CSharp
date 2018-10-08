@@ -253,8 +253,6 @@ namespace IMS.SMS.Filter.GUI.Test {
             Assert.AreEqual(expected, actual);
         }
 
-
-
         [TestMethod]
         public void TestViewChanged() {
             //-- Arrange

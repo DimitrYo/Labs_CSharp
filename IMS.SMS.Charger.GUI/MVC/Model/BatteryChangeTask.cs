@@ -17,8 +17,8 @@ namespace IMS.SMS.Charger.GUI {
         }
 
         public void Dispose() {
+            task?.Wait();
             task?.Dispose();
-            source?.Dispose();
         }
 
         public void Start() {
@@ -33,6 +33,10 @@ namespace IMS.SMS.Charger.GUI {
 
         public void Stop() {
             source.Cancel();
+        }
+
+        public bool HasSubscribers() {
+            return BatteryChange != null;
         }
     }
 }

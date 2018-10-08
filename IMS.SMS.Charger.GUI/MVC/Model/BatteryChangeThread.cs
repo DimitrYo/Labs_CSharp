@@ -41,5 +41,8 @@ namespace IMS.SMS.Charger.GUI {
         private void OnBatteryChange() {
             BatteryChange?.BeginInvoke(BatteryChangeValue, null, null);
         }
+        public bool HasSubscribers() {
+            return BatteryChange != null;
+        }
     }
 }
