@@ -45,7 +45,7 @@ namespace IMS.SMS.Charger.GUI {
 
         public void OnBatteryCharger(int level) {
             lock (ChargeLevelLock) {
-                ChargeLevel = Math.Min(ChargeLevel + level, 0);
+                ChargeLevel = Math.Min(ChargeLevel + level, 100);
             }
             UpdateView();
         }
@@ -94,7 +94,6 @@ namespace IMS.SMS.Charger.GUI {
         }
 
         public void DettachCharger() {
-            BatteryCharger.Stop();
             BatteryCharger.BatteryChange -= OnBatteryCharger;
             BatteryCharger.Dispose();
         }

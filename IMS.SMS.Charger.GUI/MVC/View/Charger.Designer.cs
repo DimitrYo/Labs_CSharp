@@ -36,7 +36,7 @@ namespace IMS.SMS.Charger.GUI {
             this.dateTimePickerMax = new System.Windows.Forms.DateTimePicker();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.chargeButton = new System.Windows.Forms.Button();
-            this.batteryProgresBar = new BatteryProgressBar();
+            this.batteryProgresBar = new IMS.SMS.Charger.GUI.BatteryProgressBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -160,6 +160,7 @@ namespace IMS.SMS.Charger.GUI {
             this.chargeButton.TabIndex = 9;
             this.chargeButton.Text = "Connect charge";
             this.chargeButton.UseVisualStyleBackColor = true;
+            this.chargeButton.Click += new System.EventHandler(this.chargeButton_Click);
             // 
             // batteryProgresBar
             // 

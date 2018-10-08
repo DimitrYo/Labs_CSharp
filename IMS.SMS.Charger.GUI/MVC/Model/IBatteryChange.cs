@@ -68,9 +68,7 @@ namespace IMS.SMS.Charger.GUI {
         }
 
         public void Dispose() {
-            if (GenerateBatteryChangeTimer != null) {
-                GenerateBatteryChangeTimer.Dispose();
-            }
+                GenerateBatteryChangeTimer?.Dispose();
         }
 
         public void Start() {
@@ -78,7 +76,8 @@ namespace IMS.SMS.Charger.GUI {
         }
 
         public void Stop() {
-            GenerateBatteryChangeTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            //GenerateBatteryChangeTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            GenerateBatteryChangeTimer.Dispose();
         }
 
         private void OnBatteryChange(object state) {

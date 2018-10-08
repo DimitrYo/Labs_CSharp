@@ -12,7 +12,7 @@ namespace IMS.SMS.Charger.GUI {
         /// </summary>
         [STAThread]
         static void Main() {
-            //Application.EnableVisualStyles();
+            Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             var view = new Charger();

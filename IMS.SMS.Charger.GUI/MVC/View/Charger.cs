@@ -115,6 +115,21 @@ namespace IMS.SMS.Charger.GUI {
             }
         }
 
+        private void chargeButton_Click(object sender, EventArgs e) {
 
+            this.IsCharging = !this.IsCharging;
+
+            var arg = new ViewBatteryEventArgs {
+                IsCharging = this.IsCharging
+            };
+
+            if (IsCharging) {
+                chargeButton.Text = "Charging";
+            } else {
+                chargeButton.Text = "Connect charge";
+            }
+
+            ChangedProgressBar?.BeginInvoke(this, arg, null, null);
+        }
     }
 }
