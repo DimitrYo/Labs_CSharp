@@ -19,6 +19,7 @@ namespace IMS.SMS.Filter.GUI {
         }
 
         IController controller;
+
         public event ViewSmsHandler<IView> Changed;
         public void setfilterSmsController(IController cont) {
             controller = cont;
@@ -67,15 +68,30 @@ namespace IMS.SMS.Filter.GUI {
         }
 
         public new void Update() {
-            var viewArg = new ViewEventArgs(userComboBox?.SelectedItem?.ToString(), searchTextBox.Text,
-                dateTimePickerMin.Value, dateTimePickerMax.Value,
-                FormattingComboBox?.SelectedItem?.ToString(),
-                dateTimePickerMin.Checked, dateTimePickerMax.Checked);
+            var viewArg = new ViewEventArgs {
+                UserToFilter = this.userComboBox?.SelectedItem?.ToString(),
+                TextToFilter = this.searchTextBox.Text,
+                MinDateTimeToFilter = this.dateTimePickerMin.Value,
+                MaxDateTimeToFilter = this.dateTimePickerMax.Value,
+                StyleMessage = this.FormattingComboBox?.SelectedItem?.ToString(),
+                FilterByMinDateChecked = this.dateTimePickerMin.Checked,
+                FilterByMaxDateChecked = this.dateTimePickerMax.Checked,
+                OrMode = orModeToolStripMenuItem.Checked
+            };
 
             Changed?.Invoke(this, viewArg);
         }
 
         private void userComboBox_TextChanged(object sender, EventArgs e) {
+            Update();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
+
+        private void orModeToolStripMenuItem_Click(object sender, EventArgs e) {
+            orModeToolStripMenuItem.Checked = !orModeToolStripMenuItem.Checked;
             Update();
         }
     }

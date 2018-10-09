@@ -40,14 +40,14 @@ namespace IMS.SMS.Charger.GUI {
             lock (ChargeLevelLock) {
                 ChargeLevel = Math.Max(ChargeLevel - level, 0);
             }
-            UpdateView();
+            UpdateView(false);
         }
 
         public void OnBatteryCharger(int level) {
             lock (ChargeLevelLock) {
                 ChargeLevel = Math.Min(ChargeLevel + level, 100);
             }
-            UpdateView();
+            UpdateView(true);
         }
 
         public void Start() {
@@ -58,16 +58,20 @@ namespace IMS.SMS.Charger.GUI {
             BatteryConsuming.Stop();
         }
 
-        public void UpdateView() {
-            var arg = new BatteryModelEventArgs {
-                ChargeLevelInt = this.ChargeLevel,
-                IsCharging = this.IsCharging,
-            };
-            Changed?.BeginInvoke(this, arg, null, null);
+        public void UpdateView(bool charger) {
+            if ((IsCharging && charger) || (!IsCharging)) {
+                var arg = new BatteryModelEventArgs {
+                    ChargeLevelInt = this.ChargeLevel,
+                    IsCharging = this.IsCharging,
+                };
+                Changed?.BeginInvoke(this, arg, null, null);
+            }
         }
 
         public void ViewChanged(ViewBatteryEventArgs e) {
-            if (e.IsCharging) {
+            IsCharging = e.IsCharging;
+
+            if (e.IsCharging) {              
                 AttachCharger();
             } else {
                 if (BatteryCharger != null) {

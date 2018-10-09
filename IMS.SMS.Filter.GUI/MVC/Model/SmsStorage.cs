@@ -17,7 +17,8 @@ namespace IMS.SMS.Filter.GUI {
         public DateTime MaxDateTimeToFilter { get; set; }
         public string StyleMessage { get; set; }
         public bool FilterByMaxDateChecked { get; set; }
-        public bool FilterByMinDateChecked { get;  set; }
+        public bool OrMode { get; private set; }
+        public bool FilterByMinDateChecked { get; set; }
         public List<Message> MsgTextListGet { get; }
 
         public SmsStorage() {
@@ -60,6 +61,7 @@ namespace IMS.SMS.Filter.GUI {
             StyleMessage = e.StyleMessage;
             FilterByMinDateChecked = e.FilterByMinDateChecked;
             FilterByMaxDateChecked = e.FilterByMaxDateChecked;
+            OrMode = e.OrMode;
 
             UpdateView();
         }
@@ -70,14 +72,30 @@ namespace IMS.SMS.Filter.GUI {
                 temp = new List<Message>(MsgTextListGet);
             }
             if (temp != null) {
-                var messages = FilterByUser(temp);
+                IEnumerable<Message> messages = Filter(temp);
+                Changed?.BeginInvoke(this, new ModelEventArgs((List<Message>)messages.ToList()), null, null);
+            }
+        }
+
+        private IEnumerable<Message> Filter(List<Message> temp) {
+            IEnumerable<Message> messages;
+            if (!OrMode) {
+                messages = FilterByUser(temp);
                 messages = FilterByMinDateTime(messages);
                 messages = FilterByMaxDateTime(messages);
                 messages = FilterByText(messages);
                 StyleChanged();
-                Changed?.BeginInvoke(this, new ModelEventArgs((List<Message>)messages.ToList()), null, null);
+
+            } else {
+                messages = temp.Where(m => 
+                m.User.Equals(UserToFilter ?? String.Empty) ||
+                (m.ReceivingTime <= MaxDateTimeToFilter && FilterByMaxDateChecked) ||
+                (m.ReceivingTime >= MinDateTimeToFilter && FilterByMinDateChecked) ||
+                m.ToString().Contains(TextToFilter ?? String.Empty)
+                );
             }
 
+            return messages;
         }
 
         public void StyleChanged() {
@@ -142,7 +160,7 @@ namespace IMS.SMS.Filter.GUI {
 
         public IEnumerable<Message> FilterByText(IEnumerable<Message> messages) {
             if (TextToFilter != null) {
-                messages = messages.Where(s => s.ToString().Contains(TextToFilter));
+                messages = messages.Where(m => m.ToString().Contains(TextToFilter));
             }
             return messages;
         }

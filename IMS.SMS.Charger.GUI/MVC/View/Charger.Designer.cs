@@ -44,10 +44,15 @@ namespace IMS.SMS.Charger.GUI {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.orModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // formattingComboBox
@@ -67,7 +72,7 @@ namespace IMS.SMS.Charger.GUI {
             // 
             // SmsMessageBox
             // 
-            this.SmsMessageBox.Location = new System.Drawing.Point(30, 133);
+            this.SmsMessageBox.Location = new System.Drawing.Point(30, 159);
             this.SmsMessageBox.Name = "SmsMessageBox";
             this.SmsMessageBox.ReadOnly = true;
             this.SmsMessageBox.Size = new System.Drawing.Size(620, 429);
@@ -176,7 +181,7 @@ namespace IMS.SMS.Charger.GUI {
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.flowLayoutPanel1);
-            this.groupBox1.Location = new System.Drawing.Point(30, 13);
+            this.groupBox1.Location = new System.Drawing.Point(30, 32);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(192, 114);
             this.groupBox1.TabIndex = 0;
@@ -196,22 +201,57 @@ namespace IMS.SMS.Charger.GUI {
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.flowLayoutPanel2);
-            this.groupBox2.Location = new System.Drawing.Point(242, 13);
+            this.groupBox2.Location = new System.Drawing.Point(242, 32);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(408, 114);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "SMS FIltering";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(677, 24);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.orModeToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // orModeToolStripMenuItem
+            // 
+            this.orModeToolStripMenuItem.Name = "orModeToolStripMenuItem";
+            this.orModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.orModeToolStripMenuItem.Text = "OrMode";
+            this.orModeToolStripMenuItem.Click += new System.EventHandler(this.orModeToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // Charger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(677, 582);
+            this.ClientSize = new System.Drawing.Size(677, 600);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.SmsMessageBox);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Charger";
@@ -224,7 +264,10 @@ namespace IMS.SMS.Charger.GUI {
             this.groupBox1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
         #endregion
@@ -243,5 +286,9 @@ namespace IMS.SMS.Charger.GUI {
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button chargeButton;
         private BatteryProgressBar batteryProgresBar;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem orModeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }

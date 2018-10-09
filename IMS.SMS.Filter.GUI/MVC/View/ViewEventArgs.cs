@@ -8,19 +8,8 @@ namespace IMS.SMS.Filter.GUI {
         public DateTime MaxDateTimeToFilter { get; set; }
         public string StyleMessage { get; set; }
         public bool FilterByMinDateChecked { get; set; }
-        public bool FilterByMaxDateChecked { get; internal set; }
+        public bool FilterByMaxDateChecked { get; set; }
 
-        public ViewEventArgs(string userToFilter, string textToFilter,
-                            DateTime minDateTimeToFilter, DateTime maxDateTimeToFilter,
-                            string styleMessage,
-                            bool filterByMinDate, bool filterByMaxDate) {
-            UserToFilter = userToFilter;
-            TextToFilter = textToFilter;
-            MinDateTimeToFilter = minDateTimeToFilter;
-            MaxDateTimeToFilter = maxDateTimeToFilter;
-            StyleMessage = styleMessage;
-            FilterByMinDateChecked = filterByMinDate;
-            FilterByMaxDateChecked = filterByMaxDate;
-        }
+        public bool OrMode { get; set; }
     }
 }

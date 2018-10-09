@@ -14,7 +14,7 @@ namespace IMS.SMS.Charger.GUI {
         void DettachCharger();
         void ViewChanged(ViewBatteryEventArgs e);
 
-        void UpdateView();
+        void UpdateView(bool charger);
         bool IsSubscribedAttachIModelObserver();
 
         BatteryMethod BatteryMethod { get; set; }
