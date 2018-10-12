@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IMS.Contacts.GUI {
-    public partial class CallsApp : Form, ICallView {
+    public partial class CallsApp : Form, ICallView, ICallModelObserver {
         public CallsApp() {
             InitializeComponent();
         }
@@ -20,6 +20,10 @@ namespace IMS.Contacts.GUI {
 
         public void setCallController(IController cont) {
             this.cnt = cont;
+        }
+
+        public void CallListUpdate(ICallModel model, CallModelEventArgs e) {
+            // throw new NotImplementedException();
         }
     }
 }

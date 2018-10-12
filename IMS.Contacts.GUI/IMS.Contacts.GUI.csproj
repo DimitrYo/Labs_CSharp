@@ -50,6 +50,8 @@
     <Compile Include="MVC\Controller\IController.cs" />
     <Compile Include="MVC\Model\Call.cs" />
     <Compile Include="MVC\Model\CallExtended.cs" />
+    <Compile Include="MVC\Model\CallGenerator.cs" />
+    <Compile Include="MVC\Model\CallModelEventArgs.cs" />
     <Compile Include="MVC\Model\CallsStorage.cs" />
     <Compile Include="MVC\Model\CallViewEventArgs.cs" />
     <Compile Include="MVC\Model\Contact.cs" />

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace IMS.Contacts.GUI {
     public class CallsStorage : ICallModel {
         List<CallExtended> Calls;
+        public event CallModelHandler<CallsStorage> Changed;
         public object StorageLock { get; set; }
 
         public void Add(Call call) {
@@ -34,7 +35,7 @@ namespace IMS.Contacts.GUI {
         }
 
         public void AttachIModelObserver(ICallModelObserver view) {
-            throw new NotImplementedException();
+            Changed += new CallModelHandler<CallsStorage>(view.CallListUpdate);
         }
 
         public bool IsSubscribedAttachIModelObserver() {

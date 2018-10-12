@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace IMS.Contacts.GUI {
+
+    public delegate void CallModelHandler<ICallModel>(ICallModel sender, CallModelEventArgs e);
+
     public interface ICallModel {
 
         void Add(Call call);
